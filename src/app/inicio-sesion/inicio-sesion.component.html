@@ -1,0 +1,34 @@
+<div class="login-page">
+	<div class="form">
+
+
+        <strong><h1>Inicio de sesion</h1></strong>
+        <img src="./assets/login.png">
+        <br>
+        <br>
+
+        
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+            
+            <input type="text"  placeholder="Usuario" formControlName="correo"/>
+            <input type="password" placeholder="Contraseña" formControlName="contra"/>
+            <p style="text-align: right;" class="message"><a href="#">Olvidaste tu contraseña?</a></p>
+            <br>
+            
+            <button>Entrar</button>
+        
+        </form>
+
+        <h1 *ngIf="inicio_incorrecto!=false"> Credenciales Incorrectas </h1>
+
+        <br>
+        <hr>
+
+        <form class="registro-form">
+            <button class="btn_registro">Registrarse</button>
+        </form>
+
+
+	</div>
+</div>
+

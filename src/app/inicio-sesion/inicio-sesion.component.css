@@ -1,0 +1,79 @@
+.login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+  }
+  .form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  .form input {
+    font-family: "Roboto", sans-serif;
+
+    background: #ffffff;
+    width: 100%;
+    border: 3px solid black;
+    border-radius: 4px;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #CCEAF4;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #000000;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .form .btn_registro {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #013b4f;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #f8f8f8;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+
+  .form .btn_registro:hover,.form .btn_registro:active,.form .btn_registro:focus {
+    background: #0b617e;
+  }
+
+  .form button:hover,.form button:active,.form button:focus {
+    background: #77bad0;
+  }
+  .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 14px;
+  }
+  .form .message a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .form img {
+    height: 50%;
+    width: 50%;
+  }
+  
