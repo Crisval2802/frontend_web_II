@@ -14,10 +14,21 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogoTransaccionComponent } from './dialogo-transaccion/dialogo-transaccion.component'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
+
+
 @NgModule({
   declarations: [
     InicioComponent,
-    BarraSuperiorComponent
+    BarraSuperiorComponent,
+    DialogoTransaccionComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +43,14 @@ import {MatMenuModule} from '@angular/material/menu';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

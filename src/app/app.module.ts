@@ -29,14 +29,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-
+    NoopAnimationsModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'csrftoken',
       headerName: 'X-CSRFToken',
     }),
     PaginaPrincipalModule,
-    NoopAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatInputModule,
