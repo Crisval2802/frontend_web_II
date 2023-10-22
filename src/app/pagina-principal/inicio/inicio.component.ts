@@ -24,10 +24,11 @@ import { DialogoTransaccionComponent } from '../dialogo-transaccion/dialogo-tran
 
 export class InicioComponent implements OnInit{
 
+  
   balance: string | undefined
 
   //Tabla
-  displayedColumns: string[] = ['categoria', 'cuenta', 'cantidad', 'comentarios'];
+  displayedColumns: string[] = ['cuenta','categoria', 'subcategoria', 'cantidad', 'comentarios'];
 
   dataSourceIngreso =  new  MatTableDataSource<TransaccionI>
   dataSourceGasto =  new  MatTableDataSource<TransaccionI>
@@ -35,8 +36,7 @@ export class InicioComponent implements OnInit{
   fecha = formatDate(new Date(), 'yyyy-MM-dd', 'en-US')
 
   //Dialogo
-  animal: string| undefined;
-  name: string| undefined;
+
 
 
 
@@ -65,6 +65,7 @@ export class InicioComponent implements OnInit{
   obtenerGastos(id: string | null){
     this.transacciones_service.getGastosDia(id).subscribe(data =>{
       this.dataSourceGasto.data= data.Transacciones;
+      console.log(data.Transacciones);
     });
   }
 
@@ -77,7 +78,7 @@ export class InicioComponent implements OnInit{
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogoTransaccionComponent, {
-      data: {name: this.name, animal: this.animal},
+      data: {},
      
     });
 
@@ -85,7 +86,9 @@ export class InicioComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      this.obtenerBalance(localStorage.getItem('id'));
+      this.obtenerGastos(localStorage.getItem('id'));
+      this.obtenerIngresos(localStorage.getItem('id'));
     });
   }
 

@@ -5,6 +5,7 @@ import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRe
 import { Observable } from 'rxjs';
 import { TransaccionI } from '../modelos/transaccion';
 import { ResponseTranI } from '../modelos/response_tran';
+import { EnvioTransaccionI } from '../modelos/envio_transaccion';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,11 @@ export class TransaccionesService implements HttpInterceptor{
   getGastosDia(clave: string | null):Observable<ResponseTranI>{
     let direccion = this.url + "transacciones/dia/Gasto/0/" + clave;
     return this.http.get<ResponseTranI>(direccion);
+  }
+
+  postTransaccion(form: EnvioTransaccionI):Observable<ResponseI>{
+    let direccion = this.url + "crear/transaccion/";
+    return this.http.post<ResponseI>(direccion, form);
   }
 
 }

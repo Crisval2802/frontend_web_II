@@ -2,18 +2,20 @@
 <mat-dialog-content>
   <p>Agrega los datos de la transaccion</p>
   
+    <form [formGroup]="transaccionForm">
 
         <label>Tipo</label>
-          <select class="example-full-width" name="select" [(ngModel)]="selectedNav">
-            <option value="Ingreso" matInput [(ngModel)]="data.tipo">Ingreso</option>
+          <select class="example-full-width" name="select" [(ngModel)]="selectedNav" formControlName="tipo">
+            <option value="Ingreso">Ingreso</option>
             <option value="Gasto" selected>Gasto</option>
           </select>
+
 
         <!-- Categorias de gasto -->
         <div *ngIf="selectedNav === 'Gasto'">
           <label>Categoria</label>
 
-            <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto">
+            <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto" formControlName="categoria_gasto">
               <option disabled value="null">Elige una categoria</option>
               <option *ngFor="let item of categorias_gasto" [value]="item.id">
                 {{ item.nombre }}
@@ -25,7 +27,7 @@
         <div *ngIf="selectedNav === 'Ingreso'">
           <label>Categoria</label>
 
-          <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso">
+          <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso" formControlName="categoria_ingreso">
             <option disabled value="null">Elige una categoria</option>
               <option *ngFor="let item of categorias_ingreso" [value]="item.id">
                 {{ item.nombre }}
@@ -34,12 +36,14 @@
         </div>
 
 
+        <h1 *ngIf="categoria_error!=false"> Elija una categoria </h1>
+
       <!-- SubCategorias de gasto -->
       <div *ngIf="selectedNav === 'Gasto'">
         <label>SubCategoria</label>
-          <select class="example-full-width" name="select">
+          <select class="example-full-width" name="select" formControlName="subcategoria_gasto">
             <option disabled value="null">Elige una subcategoria</option>
-            <option value=0>--Dejar Subcategoria Vacia--</option>
+            <option value=''>--Dejar Subcategoria Vacia--</option>
 
             <ng-container *ngFor="let item of subcategorias" >
 
@@ -54,11 +58,11 @@
       </div>
 
       <!-- SubCategorias de ingreso -->
-      <div *ngIf="selectedNav === 'Ingreso'">
-      <label>SubCategoria</label>
-          <select class="example-full-width" name="select">
+      <div *ngIf="selectedNav === 'Ingreso'" >
+      <label>SubCategoria Ingreso</label>
+          <select class="example-full-width" name="select" formControlName="subcategoria_ingreso">
             <option disabled value="null">Elige una subcategoria</option>
-            <option value=0>--Dejar Subcategoria Vacia--</option>
+            <option value=''>--Dejar Subcategoria Vacia--</option>
 
             <ng-container *ngFor="let item of subcategorias" >
 
@@ -74,28 +78,31 @@
 
 
       <label>Cuenta</label>
-          <select class="example-full-width" name="select">
+          <select class="example-full-width" name="select" formControlName="cuenta">
             <option disabled value="null">Elige una cuenta</option>
             <option *ngFor="let item of cuentas" [value]="item.id">
                {{ item.nombre }}
             </option>
           </select>
-  
+          
+          <h1 *ngIf="cuenta_error!=false"> Elija una cuenta </h1>
           
 
         <label>Cantidad</label>
         <input type='number' matInput
-               formControlName="description"/>
+               formControlName="description" formControlName="cantidad" required/>
+
+        <h1 *ngIf="cantidad_error!=false"> Ingrese un numero en la casilla cantidad </h1>
 
 
         <label>Comentarios</label>
-        <textarea></textarea>
+        <textarea formControlName="correo" formControlName="comentarios"></textarea>
 
 
-  
+    </form>
 </mat-dialog-content>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="enviarTransaccion(transaccionForm.value)"  cdkFocusInitial>Ok</button>
 </div>
