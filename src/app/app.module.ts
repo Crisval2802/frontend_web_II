@@ -18,11 +18,22 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule}  from '@angular/material/snack-bar';
+
+
+
+import { RecuperarContraComponent } from './recuperar-contra/recuperar-contra.component';
+import { CorreoEnviadoComponent } from './correo-enviado/correo-enviado.component';
+import { RegistroComponent } from './registro/registro.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioSesionComponent,
+    RecuperarContraComponent,
+    CorreoEnviadoComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +50,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

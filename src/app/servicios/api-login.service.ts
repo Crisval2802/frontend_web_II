@@ -3,6 +3,7 @@ import { LoginI } from '../modelos/login';
 import { ResponseI } from '../modelos/response';
 import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { RegistroI } from '../modelos/form_registro';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +37,16 @@ export class ApiLoginService implements HttpInterceptor {
 
   loginEmail(form: LoginI):Observable<ResponseI>{
     let direccion = this.url + "login";
+    return this.http.post<ResponseI>(direccion, form);
+  }
+
+  enviarCorreo(form: LoginI): Observable<ResponseI>{
+    let direccion = this.url + "correo";
+    return this.http.post<ResponseI>(direccion, form);
+  }
+
+  enviarRegistro(form: RegistroI): Observable<ResponseI>{
+    let direccion = this.url + "crear/usuarios/";
     return this.http.post<ResponseI>(direccion, form);
   }
 

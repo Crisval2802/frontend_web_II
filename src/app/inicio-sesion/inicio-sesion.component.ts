@@ -30,14 +30,15 @@ export class InicioSesionComponent implements OnInit{
   onLogin(form:LoginI | any){
     
     this.api_service.loginEmail(form).subscribe(data =>{
-      localStorage.setItem('authToken', data.token)
-      localStorage.setItem('correo', data.correo)
-      localStorage.setItem('nombre', data.nombre)
-      localStorage.setItem('divisa', data.divisa)
-      localStorage.setItem('id', data.id)
+      
       if (data.message=="Inicio Incorrecto"){ 
         this.inicio_incorrecto=true;
       }else{
+        localStorage.setItem('authToken', data.token)
+        localStorage.setItem('correo', data.correo)
+        localStorage.setItem('nombre', data.nombre)
+        localStorage.setItem('divisa', data.divisa)
+        localStorage.setItem('id', data.id)
         this.router.navigate(['inicio']);
         this.inicio_incorrecto=false;
       }
@@ -46,6 +47,10 @@ export class InicioSesionComponent implements OnInit{
     });
   }
 
+  irRegistro(){
+    this.router.navigate(['login']);
+    this.router.navigate(['registro']);
+  }
 
 
 }

@@ -1,0 +1,37 @@
+<div class="login-page">
+	<div class="form">
+
+
+        <strong><h1>Recuperar contraseña</h1></strong>
+        <img src="./assets/correo.png">
+        <br>
+        <br>
+
+        <h2> Ingresa tu email para enviarte con correo con tu contraseña </h2>
+        <form class="login-form" [formGroup]="correoForm" (ngSubmit)="enviar_correo(correoForm.value)">
+            
+            <input type="email"  placeholder="Correo" formControlName="correo"/>
+            <br>
+            
+
+            <div *ngIf="correo_vacio!=false">
+
+                <br>
+    
+                <h1> Ingrese un correo valido </h1>
+    
+                <br>
+    
+            </div>
+
+
+
+            <button>Enviar</button>
+        
+        </form>
+
+
+
+	</div>
+</div>
+

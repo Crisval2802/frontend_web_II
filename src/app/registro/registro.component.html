@@ -1,0 +1,63 @@
+<div class="login-page">
+	<div class="form">
+
+
+        <strong><h1>Registro de usuario</h1></strong>
+        <img src="./assets/login.png">
+        <br>
+        <br>
+
+        
+        <form class="login-form" [formGroup]="registroForm" (ngSubmit)="registrarse(registroForm.value)">
+            
+            <input type="text"  placeholder="Nombre completo" formControlName="nombre"/>
+
+            <div *ngIf="nombre_vacio!=false">
+                <br>
+                <h2> No deje la casilla de nombre vacia </h2>
+                <br>
+            </div>
+
+            <input type="text"  placeholder="Correo" formControlName="correo"/>
+
+            <div *ngIf="correo_invalido!=false">
+                <br>
+                <h2> Ingrese un correo valido </h2>
+                <br>
+            </div>
+
+            <input type="password" placeholder="Contraseña" formControlName="contra"/>
+
+            <div *ngIf="contra_invalida!=false">
+                <br>
+                <h2> Ingrese una contra de al menos 8 caracteres, con numeros y letras, y al menos un caracter especial </h2>
+                <br>
+            </div>
+
+
+            <select formControlName="divisa">
+                <option disabled value="" selected>Elige una divisa</option>
+                <option *ngFor="let item of divisas" [value]="item.clave">{{item.nombre}}</option>
+            </select>
+
+
+            <div *ngIf="divisa_vacia!=false">
+                <br>
+                <h2> Seleccione una divisa </h2>
+                <br>
+            </div>
+
+
+
+            <hr>
+            <button class="btn_registro">Registrarse</button>
+        
+        </form>
+
+
+        
+  
+
+	</div>
+</div>
+

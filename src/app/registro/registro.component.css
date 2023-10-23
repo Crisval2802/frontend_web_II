@@ -25,6 +25,19 @@
     box-sizing: border-box;
     font-size: 14px;
   }
+
+
+  select {
+    font-family: "Roboto", sans-serif;
+  
+    background: #ffffff;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
   .form button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
