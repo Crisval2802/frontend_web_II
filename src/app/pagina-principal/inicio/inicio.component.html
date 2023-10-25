@@ -3,7 +3,7 @@
 <body>
 
     <div class="parte_superior">
-        <h1 style="float: left;">Balance Total: {{balance | currency}}</h1>
+        <h1 style="float: left;">Balance Total: {{balance | currency: divisa ?? ''}}</h1>
         <h1 style="float: right;"> Fecha: {{fecha}} </h1>
     </div>
 
@@ -45,7 +45,7 @@
                     <!-- Cantidad Column -->
                     <ng-container matColumnDef="cantidad">
                       <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
                     </ng-container>
                   
                     <!-- Comentarios Column -->
@@ -86,7 +86,7 @@
                   <!-- Cantidad Column -->
                   <ng-container matColumnDef="cantidad">
                     <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                    <td mat-cell *matCellDef="let element"> {{element.cantidad | currency}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
                   </ng-container>
                 
                   <!-- Comentarios Column -->

@@ -3,4 +3,5 @@ export interface RegistroI{
     correo:string;
     contra:string;
     divisa:string;
+    balance:number;
 }

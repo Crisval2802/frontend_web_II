@@ -107,7 +107,6 @@ export class DialogoTransaccionComponent implements OnInit{
       return;
     }else{
       form.divisa=localStorage.getItem('divisa');
-      console.log(form);
       this.transaccion_service.postTransaccion(form).pipe(finalize(()=> this.dialogRef.close()))   .subscribe(data =>{
          
       });

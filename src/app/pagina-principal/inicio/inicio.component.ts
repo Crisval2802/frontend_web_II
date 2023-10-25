@@ -25,8 +25,8 @@ import { DialogoTransaccionComponent } from '../dialogo-transaccion/dialogo-tran
 export class InicioComponent implements OnInit{
 
   
-  balance: string | undefined
-
+  balance: string | undefined;
+  divisa: string | null = localStorage.getItem('divisa');
   //Tabla
   displayedColumns: string[] = ['cuenta','categoria', 'subcategoria', 'cantidad', 'comentarios'];
 
@@ -51,9 +51,12 @@ export class InicioComponent implements OnInit{
     if (!localStorage.getItem('authToken')){
       this.router.navigate(['login'])
     }
+
+
     this.obtenerIngresos(localStorage.getItem('id'));
     this.obtenerGastos(localStorage.getItem('id'));
     this.obtenerBalance(localStorage.getItem('id'));
+
   }
 
   obtenerIngresos(id: string | null){
@@ -65,7 +68,6 @@ export class InicioComponent implements OnInit{
   obtenerGastos(id: string | null){
     this.transacciones_service.getGastosDia(id).subscribe(data =>{
       this.dataSourceGasto.data= data.Transacciones;
-      console.log(data.Transacciones);
     });
   }
 

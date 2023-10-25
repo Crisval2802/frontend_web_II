@@ -2,15 +2,15 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
       <mat-menu #menu="matMenu">
+        <button mat-menu-item>Cuentas</button>
+        <button mat-menu-item>Categorias</button>
         <button mat-menu-item>Historial</button>
         <button mat-menu-item>Limites</button>
         <button mat-menu-item>Objetivos</button>
-        <button mat-menu-item>Cuentas</button>
-        <button mat-menu-item>Categorias</button>
-        <button mat-menu-item><mat-icon>person</mat-icon> Usuario</button>
+        <button mat-menu-item (click)="irUsuario()"><mat-icon>person</mat-icon> Usuario</button>
       </mat-menu>
     </button>
-    <span>Administrador de ingresos y gastos</span>
+    <span (click)="irInicio()">Administrador de ingresos y gastos</span>
     
     <span class="example-spacer"></span>
     

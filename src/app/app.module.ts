@@ -20,11 +20,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule}  from '@angular/material/snack-bar';
 
-
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { RecuperarContraComponent } from './recuperar-contra/recuperar-contra.component';
 import { CorreoEnviadoComponent } from './correo-enviado/correo-enviado.component';
 import { RegistroComponent } from './registro/registro.component';
+import { BarraSuperiorLoginComponent } from './barra-superior-login/barra-superior-login.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { RegistroComponent } from './registro/registro.component';
     InicioSesionComponent,
     RecuperarContraComponent,
     CorreoEnviadoComponent,
-    RegistroComponent
+    RegistroComponent,
+    BarraSuperiorLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { RegistroComponent } from './registro/registro.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

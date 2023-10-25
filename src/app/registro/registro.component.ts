@@ -28,23 +28,24 @@ export class RegistroComponent{
     nombre: new FormControl('', Validators.required),
     correo: new FormControl('', Validators.required),
     contra: new FormControl('', Validators.required),
-    divisa: new FormControl('', Validators.required)
+    divisa: new FormControl('', Validators.required),
+    balance: new FormControl('', Validators.required),
   })
   
   
 
   divisas: DivisaI[]=[
-    {clave:'mxn',nombre:"Peso Mexicano",},
-    {clave:'usd',nombre:"Dolar Estadounidense",},
-    {clave:'cad',nombre:"Dolar canadiense",},
-    {clave:'ars',nombre:"Peso Argentino",},
-    {clave:'uyu',nombre:"Peso Uruguayo",},
-    {clave:'clp',nombre:"Peso Chileno",},
-    {clave:'cop',nombre:"Peso Colombiano",},
-    {clave:'brl',nombre:"Real brasileño",},
-    {clave:'eur',nombre:"Euro",},
-    {clave:'gbp',nombre:"Libra esterlina",},
-    {clave:'jpy',nombre:"Yen Japones",},
+    {clave:'MXN',nombre:"Peso Mexicano",},
+    {clave:'USD',nombre:"Dolar Estadounidense",},
+    {clave:'CAD',nombre:"Dolar canadiense",},
+    {clave:'ARS',nombre:"Peso Argentino",},
+    {clave:'UYU',nombre:"Peso Uruguayo",},
+    {clave:'CLP',nombre:"Peso Chileno",},
+    {clave:'COP',nombre:"Peso Colombiano",},
+    {clave:'BRL',nombre:"Real brasileño",},
+    {clave:'EUR',nombre:"Euro",},
+    {clave:'GBO',nombre:"Libra esterlina",},
+    {clave:'JPY',nombre:"Yen Japones",},
   ];
 
 
@@ -80,7 +81,7 @@ export class RegistroComponent{
       this.contra_invalida= false;
     }
 
-    console.log(form.divisa);
+
     //Validar divisa
     if (form.divisa==""){
       this.divisa_vacia=true;
@@ -89,10 +90,14 @@ export class RegistroComponent{
       this.divisa_vacia=false;
     }
 
+    if (form.balance==""){
+      form.balance=0;
+    }
+
+
     if (errores==false){
       this.api_service.enviarRegistro(form).subscribe(data =>{
       
-        console.log(data);
         
         if (data.message=="Exito"){
           this._snackBar.open("Registro Exitoso", "Cerrar" ,{duration: 5000});

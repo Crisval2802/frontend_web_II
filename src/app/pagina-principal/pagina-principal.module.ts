@@ -21,6 +21,12 @@ import { DialogoTransaccionComponent } from './dialogo-transaccion/dialogo-trans
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import {MatSnackBarModule}  from '@angular/material/snack-bar';
+
+
+
+
+import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
 
 
 
@@ -29,7 +35,8 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [
     InicioComponent,
     BarraSuperiorComponent,
-    DialogoTransaccionComponent
+    DialogoTransaccionComponent,
+    PaginaUsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +57,8 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
 
   ],
   providers: [{

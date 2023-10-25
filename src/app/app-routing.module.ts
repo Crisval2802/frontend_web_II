@@ -6,6 +6,7 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RecuperarContraComponent } from './recuperar-contra/recuperar-contra.component';
 import { CorreoEnviadoComponent } from './correo-enviado/correo-enviado.component';
 import { RegistroComponent } from './registro/registro.component';
+import { PaginaUsuarioComponent } from './pagina-principal/pagina-usuario/pagina-usuario.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'recuperar_contra', component: RecuperarContraComponent},
   {path:'correo_enviado', component: CorreoEnviadoComponent},
   {path:'registro', component: RegistroComponent},
+  {path:'usuario', component: PaginaUsuarioComponent},
 ];
 
 @NgModule({

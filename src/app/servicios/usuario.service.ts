@@ -10,6 +10,8 @@ import { CuentaI } from '../modelos/cuentas';
 import { ResponseCuentaI } from '../modelos/response_cuenta';
 import { ResponseCategoriaI } from '../modelos/response_cat';
 import { ResponseSubcategoriaI } from '../modelos/response_sub';
+import { ResponseUsuarioI } from '../modelos/response_usuario';
+import { Cambiar_UsuarioI } from '../modelos/cambiar_usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -70,5 +72,15 @@ export class UsuarioService {
     return this.http.get<ResponseSubcategoriaI>(direccion);
   }
 
+  getDatos(clave: string | null):Observable<ResponseUsuarioI>{
+    let direccion = this.url + "obtener/informacion/usuario/" + clave;
+    return this.http.get<ResponseUsuarioI>(direccion);
+  }
+
+
+  cambiarDatos(clave: string | null , form: Cambiar_UsuarioI):Observable<ResponseI>{
+    let direccion = this.url + "usuarios/" + clave;
+    return this.http.put<ResponseI>(direccion, form);
+  }
 
 }

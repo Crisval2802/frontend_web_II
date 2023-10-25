@@ -14,4 +14,12 @@ export class BarraSuperiorComponent {
     localStorage.removeItem('authToken');
     this.router.navigate(['login']);
   }
+
+  irUsuario(){
+    this.router.navigate(['usuario']);
+  }
+
+  irInicio(){
+    this.router.navigate(['inicio']);
+  }
 }
