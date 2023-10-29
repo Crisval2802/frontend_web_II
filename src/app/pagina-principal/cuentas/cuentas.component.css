@@ -1,0 +1,43 @@
+body{
+    padding: 1%;
+}
+
+.parte_superior{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.nueva_transferir{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.cuentas{
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+
+.cuentas div{
+    float:left;
+}
+
+.nombre_cuenta{
+    width: 17%;
+    color:rgb(75, 75, 208);
+}
+
+.total_dinero{
+    margin-left: 1%;
+    width: 55%;
+}
+
+.transferencias{
+    margin-left: 1%;
+    width: 15%;
+}
+
+.editar{
+    margin-left: 1%;
+    width: 10%;
+}

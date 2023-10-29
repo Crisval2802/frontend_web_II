@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Crear Subcategoria</h1>
+<mat-dialog-content>
+  <p>Agrega los datos de la subcategoria</p>
+  
+    <form [formGroup]="subcategoriaForm">
+
+
+
+        <label>Nombre</label>
+        <input formControlName="nombre"/>          
+
+        <h1 *ngIf="nombre_error!=false"> Ingrese un nombre en la casilla nombre </h1>
+
+        
+
+
+
+          
+
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="enviarSubcategoria(subcategoriaForm.value)" cdkFocusInitial>Ok</button>
+</div>

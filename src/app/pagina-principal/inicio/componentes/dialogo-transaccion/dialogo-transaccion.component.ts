@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {Dialog_TransaccionI} from '../../modelos/Dialog_Transaccion'
+import {Dialog_TransaccionI} from '../../../../modelos/Dialog_Transaccion'
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { CuentaI } from 'src/app/modelos/cuentas';
 import { CategoriaI } from 'src/app/modelos/categorias';
@@ -12,6 +12,8 @@ import { SubcategoriaI } from 'src/app/modelos/subcategorias';
 import { EnvioTransaccionI } from 'src/app/modelos/envio_transaccion';
 import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { finalize } from 'rxjs';
+import { TransferenciasService } from 'src/app/servicios/transferencias.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -53,6 +55,8 @@ export class DialogoTransaccionComponent implements OnInit{
     public dialogRef: MatDialogRef<DialogoTransaccionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Dialog_TransaccionI,
     private transaccion_service: TransaccionesService,
+    private _snackBar: MatSnackBar
+
   ) {}
   ngOnInit(): void {
     this.obtenerCuentas(localStorage.getItem('id'));
@@ -108,7 +112,7 @@ export class DialogoTransaccionComponent implements OnInit{
     }else{
       form.divisa=localStorage.getItem('divisa');
       this.transaccion_service.postTransaccion(form).pipe(finalize(()=> this.dialogRef.close()))   .subscribe(data =>{
-         
+        this._snackBar.open("Transaccion agreagada exitosamente", "Cerrar" ,{duration: 5000});
       });
 
      

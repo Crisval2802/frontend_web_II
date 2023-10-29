@@ -1,0 +1,27 @@
+<app-barra-superior></app-barra-superior>
+<body>
+
+
+    <div class="parte_superior">
+        <h1 style="float: left;">Cuentas Usuario</h1>
+    </div>
+
+
+    <div class="nueva_transferir">
+        <button mat-button color="primary" style="border: 2px solid blue; float:left" (click)="openDialogCrearCuenta()">Nueva cuenta <mat-icon>create</mat-icon></button>
+        <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="openDialogCrearTransferencia()">Realizar transferencia</button>
+    </div>
+
+    <hr>
+
+
+    <div *ngFor="let cuenta of cuentas" class="cuentas">
+        <div class="nombre_cuenta"><h2>{{cuenta.nombre}}</h2></div>
+        <div class="total_dinero"><h2>Balance: {{cuenta.balance | currency: cuenta.divisa}}</h2></div>
+        <div class="transferencias"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%"  (click)="openDialogVerTransferencias(cuenta.id)"><mat-icon>view_list</mat-icon>Ver transferencias</button></div>
+        <div class="editar"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarCuenta(cuenta.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
+    </div>
+
+
+
+</body>

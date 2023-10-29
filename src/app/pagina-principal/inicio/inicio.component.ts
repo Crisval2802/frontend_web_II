@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ResponseI } from 'src/app/modelos/response';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogoTransaccionComponent } from '../dialogo-transaccion/dialogo-transaccion.component';
+import { DialogoTransaccionComponent } from './componentes/dialogo-transaccion/dialogo-transaccion.component';
 
 
 
@@ -50,12 +50,14 @@ export class InicioComponent implements OnInit{
     
     if (!localStorage.getItem('authToken')){
       this.router.navigate(['login'])
+    }else{
+      this.obtenerIngresos(localStorage.getItem('id'));
+      this.obtenerGastos(localStorage.getItem('id'));
+      this.obtenerBalance(localStorage.getItem('id'));
     }
 
 
-    this.obtenerIngresos(localStorage.getItem('id'));
-    this.obtenerGastos(localStorage.getItem('id'));
-    this.obtenerBalance(localStorage.getItem('id'));
+
 
   }
 

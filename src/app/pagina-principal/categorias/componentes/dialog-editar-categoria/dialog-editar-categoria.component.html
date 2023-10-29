@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Editar Categoria</h1>
+<mat-dialog-content>
+
+  
+    <form [formGroup]="categoriaForm">
+
+
+        <label>Nombre</label>
+        <input formControlName="nombre"/>          
+
+        <h1 *ngIf="nombre_error!=false"> Ingrese un nombre en la casilla nombre </h1>
+
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="putCategoria(categoriaForm.value)" cdkFocusInitial>Ok</button>
+</div>

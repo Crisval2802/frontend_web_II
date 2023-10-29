@@ -7,6 +7,8 @@ import { RecuperarContraComponent } from './recuperar-contra/recuperar-contra.co
 import { CorreoEnviadoComponent } from './correo-enviado/correo-enviado.component';
 import { RegistroComponent } from './registro/registro.component';
 import { PaginaUsuarioComponent } from './pagina-principal/pagina-usuario/pagina-usuario.component';
+import { CuentasComponent } from './pagina-principal/cuentas/cuentas.component';
+import { CategoriasComponent } from './pagina-principal/categorias/categorias.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path:'correo_enviado', component: CorreoEnviadoComponent},
   {path:'registro', component: RegistroComponent},
   {path:'usuario', component: PaginaUsuarioComponent},
+  {path:'cuentas', component: CuentasComponent},
+  {path:'categorias', component: CategoriasComponent},
 ];
 
 @NgModule({

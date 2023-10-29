@@ -19,6 +19,14 @@ export class BarraSuperiorComponent {
     this.router.navigate(['usuario']);
   }
 
+  irCuentas(){
+    this.router.navigate(['cuentas']);
+  }
+
+  irCategorias(){
+    this.router.navigate(['categorias']);
+  }
+
   irInicio(){
     this.router.navigate(['inicio']);
   }

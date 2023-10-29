@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Crear Categoria</h1>
+<mat-dialog-content>
+  <p>Agrega los datos de la categoria</p>
+  
+    <form [formGroup]="categoriaForm">
+
+        <label>Tipo</label>
+        <select class="example-full-width" name="select" formControlName="tipo">
+          <option value="Ingreso">Ingreso</option>
+          <option value="Gasto" >Gasto</option>
+        </select>
+
+        <h1 *ngIf="tipo_error!=false">Elija un tipo de categoria </h1>
+
+        <label>Nombre</label>
+        <input formControlName="nombre"/>          
+
+        <h1 *ngIf="nombre_error!=false"> Ingrese un nombre en la casilla nombre </h1>
+
+        
+
+
+
+          
+
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="enviarCategoria(categoriaForm.value)" cdkFocusInitial>Ok</button>
+</div>

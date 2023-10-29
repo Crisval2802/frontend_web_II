@@ -1,0 +1,66 @@
+<app-barra-superior></app-barra-superior>
+<body>
+
+    <div class="parte_superior">
+        <h1 style="float: left;">Categorias Usuario</h1>
+    </div>
+
+
+    <div class="nueva_categoria">
+        <button mat-button color="primary" style="border: 2px solid blue; float:left" (click)="openDialogCrearCategoria()">Nueva categoria <mat-icon>create</mat-icon></button>
+
+    </div>
+
+
+
+    <mat-tab-group>
+        <mat-tab label="Ingresos"> 
+            
+            <div *ngFor="let categoria of categorias_ingreso" >
+
+                <div class="categorias">
+                    <div class="nombre_categoria"><h2>{{categoria.nombre}}</h2></div>
+                    <div class="total_transacciones"><h2># Transacciones: {{categoria.total_transacciones}}</h2></div>
+                    <div class="total_dinero"><h2>Total dinero: {{categoria.total_dinero}}</h2></div>
+                    <div class="nueva_subcategoria"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogCrearSubcategoria(categoria.id, categoria.tipo)">+</button></div>
+                    <div class="editar"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarCategoria(categoria.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                </div>
+ 
+
+                <div *ngFor="let subcategoria of subcategorias" class="subcategorias">
+                    <div *ngIf="categoria.id==subcategoria.clave_categoria_id">
+                        <div class="nombre_subcategoria"><h3>{{subcategoria.nombre}}</h3></div>
+                        <div class="total_transacciones_sub"><h3># Transacciones: {{subcategoria.total_transacciones}}</h3></div>
+                        <div class="total_dinero_sub"><h3>Total dinero: {{subcategoria.total_dinero}}</h3></div>
+                        <div class="editar_sub"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarSubcategoria(subcategoria.id)" >Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Gastos">
+            <div *ngFor="let categoria of categorias_gasto">
+                <div class="categorias">
+                    <div class="nombre_categoria"><h2>{{categoria.nombre}}</h2></div>
+                    <div class="total_transacciones"><h2># Transacciones: {{categoria.total_transacciones}}</h2></div>
+                    <div class="total_dinero"><h2>Total dinero: {{categoria.total_dinero}}</h2></div>
+                    <div class="nueva_subcategoria"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogCrearSubcategoria(categoria.id, categoria.tipo)">+</button></div>
+                    <div class="editar"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarCategoria(categoria.id)" >Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                </div>
+
+
+                <div *ngFor="let subcategoria of subcategorias" class="subcategorias">
+                    <div *ngIf="categoria.id==subcategoria.clave_categoria_id">
+                        <div class="nombre_subcategoria"><h3>{{subcategoria.nombre}}</h3></div>
+                        <div class="total_transacciones_sub"><h3># Transacciones: {{subcategoria.total_transacciones}}</h3></div>
+                        <div class="total_dinero_sub"><h3>Total dinero: {{subcategoria.total_dinero}}</h3></div>
+                        <div class="editar_sub"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarSubcategoria(subcategoria.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</body>

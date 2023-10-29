@@ -1,0 +1,91 @@
+body{
+    padding: 1%;
+}
+
+.parte_superior{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.nueva_categoria{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.categorias{
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+
+.categorias div{
+    float:left;
+}
+
+.subcategorias{
+    overflow: hidden;
+
+}
+
+
+
+
+
+.nombre_categoria{
+    width: 17%;
+    color:rgb(75, 75, 208);
+    float:left;
+}
+
+.total_transacciones{
+    margin-left: 1%;
+    width: 20%;
+    float:left;
+}
+
+.total_dinero{
+    margin-left: 1%;
+    width: 45%;
+    float:left;
+}
+
+.nueva_subcategoria{
+    margin-left: 1%;
+    width: 5%;
+    float:left;
+}
+
+.editar{
+    margin-left: 1%;
+    width: 8%;
+    float:left;
+}
+
+
+
+.nombre_subcategoria{
+    margin-left: 8%;
+    width: 17%;
+    color:rgb(75, 75, 208);
+    float:left;
+}
+
+.total_transacciones_sub{
+    margin-left: 1%;
+    width: 20%;
+    float:left;
+}
+
+.total_dinero_sub{
+    margin-left: 1%;
+    width: 45%;
+    float:left;
+}
+
+
+.editar_sub{
+    margin-left: 1%;
+    width: 6%;
+    float:left;
+}
+

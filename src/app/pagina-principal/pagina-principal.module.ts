@@ -17,7 +17,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DialogoTransaccionComponent } from './dialogo-transaccion/dialogo-transaccion.component'
+import { DialogoTransaccionComponent } from './inicio/componentes/dialogo-transaccion/dialogo-transaccion.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -27,6 +27,16 @@ import {MatSnackBarModule}  from '@angular/material/snack-bar';
 
 
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
+import { CuentasComponent } from './cuentas/cuentas.component';
+import { DialogCrearCuentaComponent } from './cuentas/componentes/dialog-crear-cuenta/dialog-crear-cuenta.component';
+import { DialogEditarCuentaComponent } from './cuentas/componentes/dialog-editar-cuenta/dialog-editar-cuenta.component';
+import { DialogCrearTransferenciaComponent } from './cuentas/componentes/dialog-crear-transferencia/dialog-crear-transferencia.component';
+import { DialogVerTransferenciasComponent } from './cuentas/componentes/dialog-ver-transferencias/dialog-ver-transferencias.component';
+import { CategoriasComponent } from './categorias/categorias.component';
+import { DialogEditarCategoriaComponent } from './categorias/componentes/dialog-editar-categoria/dialog-editar-categoria.component';
+import { DialogEditarSubcategoriaComponent } from './categorias/componentes/dialog-editar-subcategoria/dialog-editar-subcategoria.component';
+import { DialogCrearCategoriaComponent } from './categorias/componentes/dialog-crear-categoria/dialog-crear-categoria.component';
+import { DialogCrearSubcategoriaComponent } from './categorias/componentes/dialog-crear-subcategoria/dialog-crear-subcategoria.component';
 
 
 
@@ -36,7 +46,17 @@ import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.componen
     InicioComponent,
     BarraSuperiorComponent,
     DialogoTransaccionComponent,
-    PaginaUsuarioComponent
+    PaginaUsuarioComponent,
+    CuentasComponent,
+    DialogCrearCuentaComponent,
+    DialogEditarCuentaComponent,
+    DialogCrearTransferenciaComponent,
+    DialogVerTransferenciasComponent,
+    CategoriasComponent,
+    DialogEditarCategoriaComponent,
+    DialogEditarSubcategoriaComponent,
+    DialogCrearCategoriaComponent,
+    DialogCrearSubcategoriaComponent
   ],
   imports: [
     CommonModule,
