@@ -17,6 +17,7 @@ export class RegistroComponent{
   correo_invalido:boolean=false;
   contra_invalida:boolean=false;
   divisa_vacia:boolean=false;
+  cuenta_vacia:boolean=false;
 
 
 
@@ -29,6 +30,7 @@ export class RegistroComponent{
     correo: new FormControl('', Validators.required),
     contra: new FormControl('', Validators.required),
     divisa: new FormControl('', Validators.required),
+    cuenta: new FormControl('', Validators.required),
     balance: new FormControl('', Validators.required),
   })
   
@@ -90,6 +92,13 @@ export class RegistroComponent{
       this.divisa_vacia=false;
     }
 
+    if (form.cuenta==""){
+      this.cuenta_vacia=true;
+      errores=true;
+    }else{
+      this.cuenta_vacia=false;
+    }
+
     if (form.balance==""){
       form.balance=0;
     }
@@ -98,7 +107,7 @@ export class RegistroComponent{
     if (errores==false){
       this.api_service.enviarRegistro(form).subscribe(data =>{
       
-        
+        console.log(data)
         if (data.message=="Exito"){
           this._snackBar.open("Registro Exitoso", "Cerrar" ,{duration: 5000});
           this.router.navigate(['login']);

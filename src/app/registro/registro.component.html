@@ -49,6 +49,15 @@
                 <br>
             </div>
 
+
+            <input type="text"  placeholder="Nombre de cuenta(banco, efectivo, etc.)" formControlName="cuenta"/>
+
+            <div *ngIf="cuenta_vacia!=false">
+                <br>
+                <h2> No deje la casilla de nombre vacia </h2>
+                <br>
+            </div>
+
             <input type="number" placeholder="Balance inicial" formControlName="balance"/>
 
 
