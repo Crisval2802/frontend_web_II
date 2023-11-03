@@ -12,7 +12,12 @@ export class BarraSuperiorComponent {
 
   logout(){
     localStorage.removeItem('authToken');
+    localStorage.removeItem('correo');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('divisa');
+    localStorage.removeItem('id');
     this.router.navigate(['login']);
+    
   }
 
   irUsuario(){
@@ -29,5 +34,9 @@ export class BarraSuperiorComponent {
 
   irInicio(){
     this.router.navigate(['inicio']);
+  }
+
+  irHistorial(){
+    this.router.navigate(['historial']);
   }
 }

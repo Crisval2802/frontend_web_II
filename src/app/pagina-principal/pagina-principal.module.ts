@@ -37,6 +37,7 @@ import { DialogEditarCategoriaComponent } from './categorias/componentes/dialog-
 import { DialogEditarSubcategoriaComponent } from './categorias/componentes/dialog-editar-subcategoria/dialog-editar-subcategoria.component';
 import { DialogCrearCategoriaComponent } from './categorias/componentes/dialog-crear-categoria/dialog-crear-categoria.component';
 import { DialogCrearSubcategoriaComponent } from './categorias/componentes/dialog-crear-subcategoria/dialog-crear-subcategoria.component';
+import { HistorialComponent } from './historial/historial.component';
 
 
 
@@ -56,7 +57,8 @@ import { DialogCrearSubcategoriaComponent } from './categorias/componentes/dialo
     DialogEditarCategoriaComponent,
     DialogEditarSubcategoriaComponent,
     DialogCrearCategoriaComponent,
-    DialogCrearSubcategoriaComponent
+    DialogCrearSubcategoriaComponent,
+    HistorialComponent
   ],
   imports: [
     CommonModule,

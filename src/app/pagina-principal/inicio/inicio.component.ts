@@ -51,8 +51,8 @@ export class InicioComponent implements OnInit{
     if (!localStorage.getItem('authToken')){
       this.router.navigate(['login'])
     }else{
-      this.obtenerIngresos(localStorage.getItem('id'));
-      this.obtenerGastos(localStorage.getItem('id'));
+      this.obtenerIngresos(localStorage.getItem('id'), "0");
+      this.obtenerGastos(localStorage.getItem('id'), "0");
       this.obtenerBalance(localStorage.getItem('id'));
     }
 
@@ -61,14 +61,14 @@ export class InicioComponent implements OnInit{
 
   }
 
-  obtenerIngresos(id: string | null){
-    this.transacciones_service.getIngresosDia(id).subscribe(data =>{
+  obtenerIngresos(id: string | null,  categoria: string|null){
+    this.transacciones_service.getIngresosDia(id, categoria).subscribe(data =>{
       this.dataSourceIngreso.data= data.Transacciones;
     });
   }
 
-  obtenerGastos(id: string | null){
-    this.transacciones_service.getGastosDia(id).subscribe(data =>{
+  obtenerGastos(id: string | null,  categoria: string|null){
+    this.transacciones_service.getGastosDia(id, categoria).subscribe(data =>{
       this.dataSourceGasto.data= data.Transacciones;
     });
   }
@@ -91,8 +91,8 @@ export class InicioComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.obtenerBalance(localStorage.getItem('id'));
-      this.obtenerGastos(localStorage.getItem('id'));
-      this.obtenerIngresos(localStorage.getItem('id'));
+      this.obtenerGastos(localStorage.getItem('id'), "0");
+      this.obtenerIngresos(localStorage.getItem('id'), "0");
     });
   }
 

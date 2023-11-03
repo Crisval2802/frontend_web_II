@@ -1,0 +1,854 @@
+<app-barra-superior></app-barra-superior>
+
+
+<body>
+    <div class="parte_superior">
+        <h1 style="float: left;">Historial de transacciones</h1>
+        
+    </div>
+
+    <hr>
+
+    <mat-tab-group>
+        <mat-tab label="Ingresos"> 
+            <mat-tab-group>
+                <mat-tab label="Dia"> 
+                    <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                        <h2 style="float:left">Ingresos del dia {{fecha}}</h2>
+                        <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteIngresosDia(id, categoria_elegida_ingreso_dia)">Generar reporte</button>
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <h2 style=" float: left">Categoria:  </h2>
+
+
+                        <div style=" float: left; margin-left: 10px">
+
+                
+                            <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso_dia">
+                                <option disabled value="null">Elige una categoria</option>
+                                <option [value]="0" >**Cualquiera**</option>
+                                
+                                <option *ngFor="let item of categorias_ingreso" [value]="item.id">
+                                {{ item.nombre }}
+                                </option>
+                            </select>
+
+                            
+
+                        </div>
+
+                        <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerIngresosDia(id, categoria_elegida_ingreso_dia)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+                    </div>
+
+                    
+                    <table mat-table [dataSource]="dataSourceIngresosDia.data" matSort class="mat-elevation-z8">
+
+                        <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+                      
+    
+                        <!-- Cuenta Column -->
+                        <ng-container matColumnDef="cuenta">
+                          <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                          <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                        </ng-container>
+    
+                        <!-- Categoria Column -->
+                        <ng-container matColumnDef="categoria">
+                          <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                          <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                        </ng-container>
+    
+    
+                         <!-- SubCategoria Column -->
+                         <ng-container matColumnDef="subcategoria">
+                          <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                          <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                        </ng-container>
+                      
+                        
+                      
+                        <!-- Cantidad Column -->
+                        <ng-container matColumnDef="cantidad">
+                          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                          <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                        </ng-container>
+                      
+                        <!-- Comentarios Column -->
+                        <ng-container matColumnDef="comentarios">
+                          <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                          <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                        </ng-container>
+
+                           <!-- Fecha Column -->
+                           <ng-container matColumnDef="fecha">
+                            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                          </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                    
+                      
+                </mat-tab>
+                <mat-tab label="Semana">
+                    <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                      <h2 style="float:left">Ingresos del {{inicio_semana}} al {{fin_semana}}</h2>
+                      <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteIngresosSemana(id, categoria_elegida_ingreso_semana)">Generar reporte</button>
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                      <h2 style=" float: left">Categoria:  </h2>
+
+
+                      <div style=" float: left; margin-left: 10px">
+
+              
+                          <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso_semana">
+                              <option disabled value="null">Elige una categoria</option>
+                              <option [value]="0" >**Cualquiera**</option>
+                              
+                              <option *ngFor="let item of categorias_ingreso" [value]="item.id">
+                              {{ item.nombre }}
+                              </option>
+                          </select>
+
+                          
+
+                      </div>
+
+                      <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerIngresosSemana(id, categoria_elegida_ingreso_semana)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+                    </div>
+
+                  
+                    <table mat-table [dataSource]="dataSourceIngresosSemana.data" matSort class="mat-elevation-z8">
+
+                      <!--- Note that these columns can be defined in any order.
+                            The actual rendered columns are set as a property on the row definition" -->
+                    
+
+                      <!-- Cuenta Column -->
+                      <ng-container matColumnDef="cuenta">
+                        <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                      </ng-container>
+
+                      <!-- Categoria Column -->
+                      <ng-container matColumnDef="categoria">
+                        <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                      </ng-container>
+
+
+                      <!-- SubCategoria Column -->
+                      <ng-container matColumnDef="subcategoria">
+                        <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                      </ng-container>
+                    
+                      
+                    
+                      <!-- Cantidad Column -->
+                      <ng-container matColumnDef="cantidad">
+                        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                        <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                      </ng-container>
+                    
+                      <!-- Comentarios Column -->
+                      <ng-container matColumnDef="comentarios">
+                        <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                        <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                      </ng-container>
+
+                      <!-- Fecha Column -->
+                      <ng-container matColumnDef="fecha">
+                        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                        <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                      </ng-container>
+                    
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  
+                  
+
+                </mat-tab>
+
+                <mat-tab label="Mes">
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Ingresos del mes de {{mes}}</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteIngresosMes(id, categoria_elegida_ingreso_mes)">Generar reporte</button>
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <h2 style=" float: left">Categoria:  </h2>
+
+
+                    <div style=" float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso_mes">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_ingreso" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+
+                    </div>
+
+                    <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerIngresosMes(id, categoria_elegida_ingreso_mes)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+                  </div>
+
+                
+                  <table mat-table [dataSource]="dataSourceIngresosMes.data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+
+                    <!-- Cuenta Column -->
+                    <ng-container matColumnDef="cuenta">
+                      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                    </ng-container>
+
+                    <!-- Categoria Column -->
+                    <ng-container matColumnDef="categoria">
+                      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                    </ng-container>
+
+
+                    <!-- SubCategoria Column -->
+                    <ng-container matColumnDef="subcategoria">
+                      <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                    </ng-container>
+                  
+                    
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                    </ng-container>
+                  
+                    <!-- Comentarios Column -->
+                    <ng-container matColumnDef="comentarios">
+                      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                      <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                    </ng-container>
+
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </mat-tab>
+
+                <mat-tab label="Año">
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Ingresos del {{year}}</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteIngresosYear(id, categoria_elegida_ingreso_year)">Generar reporte</button>
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <h2 style=" float: left">Categoria:  </h2>
+
+
+                    <div style=" float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso_year">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_ingreso" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+
+                    </div>
+
+                    <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerIngresosYear(id, categoria_elegida_ingreso_year)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+                  </div>
+
+                
+                  <table mat-table [dataSource]="dataSourceIngresosYear.data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+
+                    <!-- Cuenta Column -->
+                    <ng-container matColumnDef="cuenta">
+                      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                    </ng-container>
+
+                    <!-- Categoria Column -->
+                    <ng-container matColumnDef="categoria">
+                      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                    </ng-container>
+
+
+                    <!-- SubCategoria Column -->
+                    <ng-container matColumnDef="subcategoria">
+                      <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                    </ng-container>
+                  
+                    
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                    </ng-container>
+                  
+                    <!-- Comentarios Column -->
+                    <ng-container matColumnDef="comentarios">
+                      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                      <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                    </ng-container>
+
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </mat-tab>
+
+                <mat-tab label="Rango">
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Ingresos por rango</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteIngresosRango(id, categoria_elegida_ingreso_rango, fecha_inicio_ingresos_rango, fecha_final_ingresos_rango)">Generar reporte</button>
+                  </div>
+
+                  <div style="margin-top: 10px;  overflow: hidden;">
+                    <h2 style=" float: left">Categoria:  </h2>
+
+
+                    <div style=" float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso_rango">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_ingreso" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+                        
+
+                    </div>
+                   
+
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <label>Fecha inical</label>
+                    <input type="date" [(ngModel)]="fecha_inicio_ingresos_rango" value={{fecha}} required/>
+                    <br>
+                    <label class="fecha_final">Fecha final</label>
+                    <input type="date" [(ngModel)]="fecha_final_ingresos_rango" value={{fecha}} required/>
+                    <button mat-button color="primary" style=" border: 2px solid blue; margin-left:10px;" (click)="obtenerIngresosRango(id, categoria_elegida_ingreso_year, fecha_inicio_ingresos_rango, fecha_final_ingresos_rango)">Filtrar <mat-icon>filter_list</mat-icon></button>
+                  </div>
+                  
+                  <table mat-table [dataSource]="dataSourceIngresosRango.data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+
+                    <!-- Cuenta Column -->
+                    <ng-container matColumnDef="cuenta">
+                      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                    </ng-container>
+
+                    <!-- Categoria Column -->
+                    <ng-container matColumnDef="categoria">
+                      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                    </ng-container>
+
+
+                    <!-- SubCategoria Column -->
+                    <ng-container matColumnDef="subcategoria">
+                      <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                    </ng-container>
+                  
+                    
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                    </ng-container>
+                  
+                    <!-- Comentarios Column -->
+                    <ng-container matColumnDef="comentarios">
+                      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                      <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                    </ng-container>
+
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </mat-tab>
+            </mat-tab-group>
+            
+              
+        </mat-tab>
+        <mat-tab label="Gastos">
+            <mat-tab-group>
+                <mat-tab label="Dia"> 
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Gastos del dia {{fecha}}</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteGastosDia(id, categoria_elegida_gasto_dia)">Generar reporte</button>
+                  </div>
+
+
+                    <h2 style="margin-top: 1%; float: left">Categoria:  </h2>
+
+
+                    <div style="margin-top: 1%; float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto_dia">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_gasto" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+
+                    </div>
+
+                    <button mat-button color="primary" style="margin-top: 1%; border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerGastosDia(id, categoria_elegida_gasto_dia)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+
+                    <table mat-table [dataSource]="dataSourceGastosDia.data" matSort class="mat-elevation-z8">
+
+                        <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+                      
+    
+                        <!-- Cuenta Column -->
+                        <ng-container matColumnDef="cuenta">
+                          <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                          <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                        </ng-container>
+    
+                        <!-- Categoria Column -->
+                        <ng-container matColumnDef="categoria">
+                          <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                          <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                        </ng-container>
+    
+    
+                         <!-- SubCategoria Column -->
+                         <ng-container matColumnDef="subcategoria">
+                          <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                          <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                        </ng-container>
+                      
+                        
+                      
+                        <!-- Cantidad Column -->
+                        <ng-container matColumnDef="cantidad">
+                          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                          <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                        </ng-container>
+                      
+                        <!-- Comentarios Column -->
+                        <ng-container matColumnDef="comentarios">
+                          <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                          <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                        </ng-container>
+                      
+                            <!-- Fecha Column -->
+                        <ng-container matColumnDef="fecha">
+                          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                          <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                    
+                    
+                      
+                </mat-tab>
+                <mat-tab label="Semana">
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Gastos del {{inicio_semana}} al {{fin_semana}}</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteGastosSemana(id, categoria_elegida_gasto_semana)">Generar reporte</button>
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <h2 style=" float: left">Categoria:  </h2>
+
+
+                    <div style=" float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto_semana">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_gasto" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+
+                    </div>
+
+                    <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerGastosSemana(id, categoria_elegida_gasto_semana)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+                  </div>
+
+                
+                  <table mat-table [dataSource]="dataSourceGastosSemana.data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+
+                    <!-- Cuenta Column -->
+                    <ng-container matColumnDef="cuenta">
+                      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                    </ng-container>
+
+                    <!-- Categoria Column -->
+                    <ng-container matColumnDef="categoria">
+                      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                    </ng-container>
+
+
+                    <!-- SubCategoria Column -->
+                    <ng-container matColumnDef="subcategoria">
+                      <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                    </ng-container>
+                  
+                    
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                    </ng-container>
+                  
+                    <!-- Comentarios Column -->
+                    <ng-container matColumnDef="comentarios">
+                      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                      <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                    </ng-container>
+
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                
+                </mat-tab>
+
+                <mat-tab label="Mes">
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Gastos del mes de {{mes}}</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteGastosMes(id, categoria_elegida_gasto_mes)">Generar reporte</button>
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <h2 style=" float: left">Categoria:  </h2>
+
+
+                    <div style=" float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto_mes">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_gasto" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+
+                    </div>
+
+                    <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerGastosMes(id, categoria_elegida_gasto_mes)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+                  </div>
+
+                
+                  <table mat-table [dataSource]="dataSourceGastosMes.data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+
+                    <!-- Cuenta Column -->
+                    <ng-container matColumnDef="cuenta">
+                      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                    </ng-container>
+
+                    <!-- Categoria Column -->
+                    <ng-container matColumnDef="categoria">
+                      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                    </ng-container>
+
+
+                    <!-- SubCategoria Column -->
+                    <ng-container matColumnDef="subcategoria">
+                      <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                    </ng-container>
+                  
+                    
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                    </ng-container>
+                  
+                    <!-- Comentarios Column -->
+                    <ng-container matColumnDef="comentarios">
+                      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                      <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                    </ng-container>
+
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </mat-tab>
+
+                <mat-tab label="Año">
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Gastos del {{year}}</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteGastosYear(id, categoria_elegida_gasto_year)">Generar reporte</button>
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <h2 style=" float: left">Categoria:  </h2>
+
+
+                    <div style=" float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto_year">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_gasto" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+
+                    </div>
+
+                    <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerGastosYear(id, categoria_elegida_gasto_year)">Filtrar <mat-icon>filter_list</mat-icon></button>
+
+                  </div>
+
+                
+                  <table mat-table [dataSource]="dataSourceGastosYear.data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+
+                    <!-- Cuenta Column -->
+                    <ng-container matColumnDef="cuenta">
+                      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                    </ng-container>
+
+                    <!-- Categoria Column -->
+                    <ng-container matColumnDef="categoria">
+                      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                    </ng-container>
+
+
+                    <!-- SubCategoria Column -->
+                    <ng-container matColumnDef="subcategoria">
+                      <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                    </ng-container>
+                  
+                    
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                    </ng-container>
+                  
+                    <!-- Comentarios Column -->
+                    <ng-container matColumnDef="comentarios">
+                      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                      <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                    </ng-container>
+
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </mat-tab>
+
+                <mat-tab label="Rango">
+                  <div style="margin-bottom: 10px; overflow: hidden; margin-top: 10px;" >
+                    <h2 style="float:left">Gastos por rango</h2>
+                    <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteGastosRango(id, categoria_elegida_gasto_rango, fecha_inicio_gastos_rango, fecha_final_gastos_rango)">Generar reporte</button>
+                  </div>
+
+                  <div style="margin-top: 10px;  overflow: hidden;">
+                    <h2 style=" float: left">Categoria:  </h2>
+
+
+                    <div style=" float: left; margin-left: 10px">
+
+            
+                        <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto_rango">
+                            <option disabled value="null">Elige una categoria</option>
+                            <option [value]="0" >**Cualquiera**</option>
+                            
+                            <option *ngFor="let item of categorias_gasto" [value]="item.id">
+                            {{ item.nombre }}
+                            </option>
+                        </select>
+
+                        
+                        
+
+                    </div>
+                   
+
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <label>Fecha inical</label>
+                    <input type="date" [(ngModel)]="fecha_inicio_gastos_rango" value={{fecha}} required/>
+                    <br>
+                    <label class="fecha_final">Fecha final</label>
+                    <input type="date" [(ngModel)]="fecha_final_gastos_rango" value={{fecha}} required/>
+                    <button mat-button color="primary" style=" border: 2px solid blue; margin-left:10px;" (click)="obtenerGastosRango(id, categoria_elegida_gasto_year, fecha_inicio_gastos_rango, fecha_final_gastos_rango)">Filtrar <mat-icon>filter_list</mat-icon></button>
+                  </div>
+                  
+                  <table mat-table [dataSource]="dataSourceGastosRango.data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+
+                    <!-- Cuenta Column -->
+                    <ng-container matColumnDef="cuenta">
+                      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_cuenta}} </td>
+                    </ng-container>
+
+                    <!-- Categoria Column -->
+                    <ng-container matColumnDef="categoria">
+                      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_categoria}} </td>
+                    </ng-container>
+
+
+                    <!-- SubCategoria Column -->
+                    <ng-container matColumnDef="subcategoria">
+                      <th mat-header-cell *matHeaderCellDef> SubCategoria </th>
+                      <td mat-cell *matCellDef="let element"> {{element.nombre_subcategoria}} </td>
+                    </ng-container>
+                  
+                    
+                  
+                    <!-- Cantidad Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.cantidad | currency: element.divisa}} </td>
+                    </ng-container>
+                  
+                    <!-- Comentarios Column -->
+                    <ng-container matColumnDef="comentarios">
+                      <th mat-header-cell *matHeaderCellDef> Comentarios </th>
+                      <td mat-cell *matCellDef="let element"> {{element.comentarios}} </td>
+                    </ng-container>
+
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="fecha">
+                      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-tab>
+    </mat-tab-group>
+
+</body>

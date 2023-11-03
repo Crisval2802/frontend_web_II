@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -46,7 +47,7 @@ import { BarraSuperiorLoginComponent } from './barra-superior-login/barra-superi
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'csrftoken',
-      headerName: 'X-CSRFToken',
+      headerName: 'X-CSRFTOKEN',
     }),
     PaginaPrincipalModule,
     MatIconModule,

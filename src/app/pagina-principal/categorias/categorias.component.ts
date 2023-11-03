@@ -21,6 +21,7 @@ export class CategoriasComponent implements OnInit{
   categorias_ingreso: CategoriaI[] | undefined;
   subcategorias: SubcategoriaI[] | undefined;
 
+  divisa = localStorage.getItem('divisa');
 
   constructor (private router: Router,
               private usuario_service: UsuarioService,
