@@ -5,12 +5,14 @@
         <button mat-menu-item (click)="irCuentas()">Cuentas</button>
         <button mat-menu-item (click)="irCategorias()">Categorias</button>
         <button mat-menu-item (click)="irHistorial()">Historial</button>
-        <button mat-menu-item>Limites</button>
-        <button mat-menu-item>Objetivos</button>
+        <button mat-menu-item (click)="irLimites()">Limites</button>
+        <button mat-menu-item (click)="irObjetivos()">Objetivos</button>
         <button mat-menu-item (click)="irUsuario()"><mat-icon>person</mat-icon> Usuario</button>
       </mat-menu>
     </button>
-    <span (click)="irInicio()">Administrador de ingresos y gastos</span>
+
+    <img src="./assets/logo_barra.png" (click)="irInicio()">
+
     
     <span class="example-spacer"></span>
     

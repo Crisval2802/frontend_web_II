@@ -1,5 +1,27 @@
 span{
-    cursor: pointer
+    cursor: pointer;
+
 }
 
+img{
+    margin-left: 1%;
+    height: 55px;
+    width: 380px;
 
+}
+
+@media screen and (max-width: 600px) {
+    span{
+        font-size: 18px;
+    }
+
+    img{
+        margin-left: 1%;
+        height: 40px;
+        width: 95%;
+    
+    }
+
+
+
+}

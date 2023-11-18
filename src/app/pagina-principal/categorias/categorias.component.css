@@ -2,6 +2,8 @@ body{
     padding: 1%;
 }
 
+
+
 .parte_superior{
     overflow: hidden;
     margin-bottom: 10px;
@@ -35,6 +37,7 @@ body{
     width: 17%;
     color:rgb(75, 75, 208);
     float:left;
+    overflow: hidden;
 }
 
 .total_transacciones{
@@ -61,6 +64,11 @@ body{
     float:left;
 }
 
+.editar button{
+    border: 2px solid blue; 
+    float:left; 
+    width:100%;
+}
 
 
 .nombre_subcategoria{
@@ -69,6 +77,14 @@ body{
     color:rgb(75, 75, 208);
     float:left;
 }
+
+.nueva_subcategoria button{
+    border: 2px solid blue; 
+    float:left; 
+    width:100%;
+}
+
+
 
 .total_transacciones_sub{
     margin-left: 1%;
@@ -89,3 +105,95 @@ body{
     float:left;
 }
 
+.editar_sub button{
+    border: 2px solid blue; 
+    float:left; 
+    width:100%;
+}
+
+
+@media screen and (max-width: 1200px) {
+    h2{
+        font-size: 12px;
+    }
+
+    h3{
+        font-size: 10px;
+    }
+
+    button{
+        font-size: 10px;
+    }
+
+    
+    .nombre_categoria{
+        width: 23%;
+        color:rgb(75, 75, 208);
+        float:left;
+        overflow: hidden;
+    }
+
+    .total_transacciones{
+        margin-left: 1%;
+        width: 10%;
+        float:left;
+    }
+
+    .total_dinero{
+        margin-left: 1%;
+        width: 45%;
+        float:left;
+    }
+
+
+    .total_transacciones{
+        margin-left: 1%;
+        width: 30%;
+        float:left;
+    }
+    
+    .total_dinero{
+        margin-left: 1%;
+        width: 45%;
+        float:left;
+    }
+
+    .editar{ 
+        
+        float:none; 
+        width:20%;
+    }
+
+    .nueva_subcategoria{
+
+        margin-left: 8%;
+        float:none; 
+        width:20%;
+    }
+    
+
+
+    .editar button{
+        margin-left: 20%;
+        border: 2px solid blue; 
+        float:left; 
+        width:100%;
+    }
+
+
+    .nueva_subcategoria button{
+        border: 2px solid blue; 
+        float:left; 
+        width:100%;
+    }
+
+    
+    .editar_sub{
+        margin-left: 65%;
+        width: 20%;
+        float:left;
+    }
+    
+
+
+}

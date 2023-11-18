@@ -3,7 +3,7 @@
 
 
     <div class="parte_superior">
-        <h1 style="float: left;">Cuentas Usuario</h1>
+        <h1 style="float: left;">Cuentas</h1>
     </div>
 
 
@@ -19,7 +19,7 @@
         <div class="nombre_cuenta"><h2>{{cuenta.nombre}}</h2></div>
         <div class="total_dinero"><h2>Balance: {{cuenta.balance | currency: cuenta.divisa}}</h2></div>
         <div class="transferencias"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%"  (click)="openDialogVerTransferencias(cuenta.id)"><mat-icon>view_list</mat-icon>Ver transferencias</button></div>
-        <div class="editar"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarCuenta(cuenta.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
+        <div class="editar"><button mat-button color="primary" style="border: 2px solid blue; float:rigth; width:100%" (click)="openDialogEditarCuenta(cuenta.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
     </div>
 
 

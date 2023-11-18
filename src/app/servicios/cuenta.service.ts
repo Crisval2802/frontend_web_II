@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { ResponseI } from '../modelos/response';
+import { ResponseI } from '../interfaces/response';
 import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
-import { Envio_CuentaI } from '../modelos/envio_cuenta';
-import { Put_CuentaI } from '../modelos/put_cuenta';
+import { Envio_CuentaI } from '../interfaces/envio_cuenta';
+import { Put_CuentaI } from '../interfaces/put_cuenta';
 
 @Injectable({
   providedIn: 'root'

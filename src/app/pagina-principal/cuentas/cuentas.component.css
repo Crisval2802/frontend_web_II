@@ -15,6 +15,7 @@ body{
 .cuentas{
     overflow: hidden;
     margin-top: 10px;
+    width:100%;
 }
 
 
@@ -40,4 +41,28 @@ body{
 .editar{
     margin-left: 1%;
     width: 10%;
+}
+
+
+@media screen and (max-width: 600px) {
+    h2{
+        font-size: 12px;
+    }
+
+    button{
+        font-size: 10px;
+    }
+
+    .total_dinero{
+        width: 35%;
+    }
+
+    .transferencias{
+        width: 25%;
+    }
+
+    .editar{
+        width: 20%;
+    }
+
 }

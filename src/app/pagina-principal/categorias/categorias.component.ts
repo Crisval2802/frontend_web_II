@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CategoriaI } from 'src/app/modelos/categorias';
+import { CategoriaI } from 'src/app/interfaces/categorias';
 
-import { SubcategoriaI } from 'src/app/modelos/subcategorias';
+import { SubcategoriaI } from 'src/app/interfaces/subcategorias';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { DialogEditarCategoriaComponent } from './componentes/dialog-editar-categoria/dialog-editar-categoria.component';
 import { DialogEditarSubcategoriaComponent } from './componentes/dialog-editar-subcategoria/dialog-editar-subcategoria.component';

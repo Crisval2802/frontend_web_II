@@ -11,6 +11,8 @@ import { PaginaUsuarioComponent } from './pagina-principal/pagina-usuario/pagina
 import { CuentasComponent } from './pagina-principal/cuentas/cuentas.component';
 import { CategoriasComponent } from './pagina-principal/categorias/categorias.component';
 import { HistorialComponent } from './pagina-principal/historial/historial.component';
+import { LimitesComponent } from './pagina-principal/limites/limites.component';
+import { ObjetivosComponent } from './pagina-principal/objetivos/objetivos.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   {path:'cuentas', component: CuentasComponent},
   {path:'categorias', component: CategoriasComponent},
   {path:'historial', component: HistorialComponent},
+  {path: "limites", component: LimitesComponent},
+  {path: "objetivos", component: ObjetivosComponent}
 ];
 
 @NgModule({

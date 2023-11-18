@@ -38,6 +38,10 @@ import { DialogEditarSubcategoriaComponent } from './categorias/componentes/dial
 import { DialogCrearCategoriaComponent } from './categorias/componentes/dialog-crear-categoria/dialog-crear-categoria.component';
 import { DialogCrearSubcategoriaComponent } from './categorias/componentes/dialog-crear-subcategoria/dialog-crear-subcategoria.component';
 import { HistorialComponent } from './historial/historial.component';
+import { LimitesComponent } from './limites/limites.component';
+import { ObjetivosComponent } from './objetivos/objetivos.component';
+import { DialogCrearLimiteComponent } from './limites/componentes/dialog-crear-limite/dialog-crear-limite.component';
+import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-crear-objetivo/dialog-crear-objetivo.component';
 
 
 
@@ -58,7 +62,11 @@ import { HistorialComponent } from './historial/historial.component';
     DialogEditarSubcategoriaComponent,
     DialogCrearCategoriaComponent,
     DialogCrearSubcategoriaComponent,
-    HistorialComponent
+    HistorialComponent,
+    LimitesComponent,
+    ObjetivosComponent,
+    DialogCrearLimiteComponent,
+    DialogCrearObjetivoComponent
   ],
   imports: [
     CommonModule,

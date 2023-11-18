@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs';
-import { Envio_CategoriaI } from 'src/app/modelos/envio_categoria';
+import { Envio_CategoriaI } from 'src/app/interfaces/envio_categoria';
 import { CategoriasService } from 'src/app/servicios/categorias.service';
 
 @Component({

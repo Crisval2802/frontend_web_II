@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import { ResponseI } from '../modelos/response';
+import { ResponseI } from '../interfaces/response';
 import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
-import { BalanceI } from '../modelos/balance';
+import { BalanceI } from '../interfaces/balance';
 
-import { ResponseCuentaI } from '../modelos/response_cuenta';
-import { ResponseCategoriaI } from '../modelos/response_cat';
-import { ResponseSubcategoriaI } from '../modelos/response_sub';
-import { ResponseUsuarioI } from '../modelos/response_usuario';
-import { Cambiar_UsuarioI } from '../modelos/cambiar_usuario';
+import { ResponseCuentaI } from '../interfaces/response_cuenta';
+import { ResponseCategoriaI } from '../interfaces/response_cat';
+import { ResponseSubcategoriaI } from '../interfaces/response_sub';
+import { ResponseUsuarioI } from '../interfaces/response_usuario';
+import { Cambiar_UsuarioI } from '../interfaces/cambiar_usuario';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BarraSuperiorComponent } from '../barra-superior/barra-superior.component';
-import { DivisaI } from 'src/app/modelos/divisas';
+import { DivisaI } from 'src/app/interfaces/divisas';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Router } from '@angular/router';
-import { Cambiar_UsuarioI } from 'src/app/modelos/cambiar_usuario';
+import { Cambiar_UsuarioI } from 'src/app/interfaces/cambiar_usuario';
 import { finalize } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -99,7 +99,10 @@ export class PaginaUsuarioComponent implements OnInit {
       localStorage.setItem('divisa', aux ?? '');
 
       this._snackBar.open("Divisa Actualizada exitosamente", "Cerrar" ,{duration: 5000});
+
+      console.log(data);
     });
+
 
 
 

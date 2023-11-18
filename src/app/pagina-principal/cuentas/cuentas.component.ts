@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CuentaI } from 'src/app/modelos/cuentas';
+import { CuentaI } from 'src/app/interfaces/cuentas';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { DialogCrearCuentaComponent } from './componentes/dialog-crear-cuenta/dialog-crear-cuenta.component';
 import { DialogEditarCuentaComponent } from './componentes/dialog-editar-cuenta/dialog-editar-cuenta.component';

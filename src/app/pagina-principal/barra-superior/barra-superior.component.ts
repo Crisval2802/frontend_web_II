@@ -39,4 +39,12 @@ export class BarraSuperiorComponent {
   irHistorial(){
     this.router.navigate(['historial']);
   }
+
+  irLimites(){
+    this.router.navigate(['limites']);
+  }
+
+  irObjetivos(){
+    this.router.navigate(['objetivos']);
+  }
 }

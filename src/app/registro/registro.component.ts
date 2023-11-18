@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { DivisaI } from '../modelos/divisas';
+import { DivisaI } from '../interfaces/divisas';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RegistroI } from '../modelos/form_registro';
+import { RegistroI } from '../interfaces/form_registro';
 import { ApiLoginService } from '../servicios/api-login.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';

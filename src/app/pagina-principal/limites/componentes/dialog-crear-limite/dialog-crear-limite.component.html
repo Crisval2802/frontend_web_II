@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Crear Limite</h1>
+<mat-dialog-content>
+  <p>Agrega los datos del limite</p>
+  
+    <form [formGroup]="limiteForm">
+
+
+
+        <label>Cantidad Limite</label>
+        <input type='number' matInput
+                formControlName="asignado" required/>
+
+        <h1 *ngIf="cantidad_error!=false"> Ingrese un numero en la casilla cantidad </h1>     
+
+         <!-- Categorias de gasto -->
+         <div>
+          <label>Categoria</label>
+
+            <select class="example-full-width" name="select"  formControlName="categoria">
+              <option disabled value=Null>Elige una categoria</option>
+              <option value="Any">**Cualquier categoria**</option>
+              <option *ngFor="let item of categorias_gasto" [value]="item.id">
+                {{ item.nombre }}
+              </option>
+            </select>
+        </div> 
+
+
+        
+        <h1 *ngIf="categoria_error!=false"> Elija una categoria</h1>     
+
+        <label>Fecha Limite</label>
+
+        <input type="date"  min={{fecha}} name="fecha_limite" formControlName="fecha_limite"/>
+
+          
+
+    </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="enviarLimite(limiteForm.value)" cdkFocusInitial>Ok</button>
+</div>

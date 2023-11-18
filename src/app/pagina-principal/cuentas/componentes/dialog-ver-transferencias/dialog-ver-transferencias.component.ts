@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { TransferenciaI } from 'src/app/modelos/transferencia';
+import { TransferenciaI } from 'src/app/interfaces/transferencia';
 import { CuentaService } from 'src/app/servicios/cuenta.service';
 import { TransferenciasService } from 'src/app/servicios/transferencias.service';
 

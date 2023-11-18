@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginI } from '../modelos/login';
+import { LoginI } from '../interfaces/login';
 import { ApiLoginService } from '../servicios/api-login.service';
 import { Router } from '@angular/router';
-import { CorreoI } from '../modelos/correo';
+import { CorreoI } from '../interfaces/correo';
 
 @Component({
   selector: 'app-recuperar-contra',

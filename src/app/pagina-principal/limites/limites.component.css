@@ -1,0 +1,46 @@
+body{
+    padding: 1%;
+}
+
+.parte_superior{
+    overflow: hidden;
+}
+
+
+.categoria{
+    width: 20%;
+    float:left;
+}
+
+.total_gastado{
+    margin-left: 1%;
+    width: 28%;
+    float:left;
+}
+
+.limite_asignado{
+    margin-left: 1%;
+    width: 28%;
+    float:left;
+}
+
+
+.fecha_limite{
+    margin-left: 1%;
+    width: 20%;
+    float:left;
+}
+
+@media screen and (max-width: 600px) {
+    h1{
+        font-size: 13px;
+    }
+
+    h2{
+        font-size:11px;
+
+    }
+}
+
+
+

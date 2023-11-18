@@ -1,8 +1,8 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { CategoriaI } from 'src/app/modelos/categorias';
-import { TransaccionI } from 'src/app/modelos/transaccion';
+import { CategoriaI } from 'src/app/interfaces/categorias';
+import { TransaccionI } from 'src/app/interfaces/transaccion';
 import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import * as FileSaver from 'file-saver';
@@ -88,29 +88,29 @@ export class HistorialComponent implements OnInit {
     this.obtenerCategoriasGasto(localStorage.getItem('id'));
     
 
-    if (this.numero_mes==1){
+    if (this.numero_mes==0){
       this.mes='Enero';
-    }else if(this.numero_mes==2){
+    }else if(this.numero_mes==1){
       this.mes='Febrero';
-    }else if(this.numero_mes==3){
+    }else if(this.numero_mes==2){
       this.mes='Marzo';
-    }else if(this.numero_mes==4){
+    }else if(this.numero_mes==3){
       this.mes='Abril';
-    }else if(this.numero_mes==5){
+    }else if(this.numero_mes==4){
       this.mes='Mayo';
-    }else if(this.numero_mes==6){
+    }else if(this.numero_mes==5){
       this.mes='Junio';
-    }else if(this.numero_mes==7){
+    }else if(this.numero_mes==6){
       this.mes='Julio';
-    }else if(this.numero_mes==8){
+    }else if(this.numero_mes==7){
       this.mes='Agosto';
-    }else if(this.numero_mes==9){
+    }else if(this.numero_mes==8){
       this.mes='Septiembre';
-    }else if(this.numero_mes==10){
+    }else if(this.numero_mes==9){
       this.mes='Octubre';
-    }else if(this.numero_mes==11){
+    }else if(this.numero_mes==10){
       this.mes='Noviembre';
-    }else if(this.numero_mes==12){
+    }else if(this.numero_mes==11){
       this.mes='Diciembre';
     }
   }

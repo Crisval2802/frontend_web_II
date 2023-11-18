@@ -2,7 +2,7 @@
 <body>
 
     <div class="parte_superior">
-        <h1 style="float: left;">Categorias Usuario</h1>
+        <h1 style="float: left;">Categorias </h1>
     </div>
 
 
@@ -18,21 +18,21 @@
             
             <div *ngFor="let categoria of categorias_ingreso" >
 
-                <div class="categorias">
+                <div class="categorias" style="overflow: hidden;">
                     <div class="nombre_categoria"><h2>{{categoria.nombre}}</h2></div>
-                    <div class="total_transacciones"><h2># Transacciones: {{categoria.total_transacciones}}</h2></div>
-                    <div class="total_dinero"><h2>Total dinero: {{categoria.total_dinero | currency:divisa?? ''}}</h2></div>
-                    <div class="nueva_subcategoria"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogCrearSubcategoria(categoria.id, categoria.tipo)">+</button></div>
-                    <div class="editar"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarCategoria(categoria.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                    <div class="total_transacciones"><h2>Cantidad: {{categoria.total_transacciones}}</h2></div>
+                    <div class="total_dinero"><h2>Dinero: {{categoria.total_dinero | currency:divisa?? ''}}</h2></div>
+                    <div class="nueva_subcategoria"><button mat-button color="primary" (click)="openDialogCrearSubcategoria(categoria.id, categoria.tipo)">+</button></div>
+                    <div class="editar"><button mat-button color="primary" (click)="openDialogEditarCategoria(categoria.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
                 </div>
  
 
                 <div *ngFor="let subcategoria of subcategorias" class="subcategorias">
                     <div *ngIf="categoria.id==subcategoria.clave_categoria_id">
                         <div class="nombre_subcategoria"><h3>{{subcategoria.nombre}}</h3></div>
-                        <div class="total_transacciones_sub"><h3># Transacciones: {{subcategoria.total_transacciones}}</h3></div>
-                        <div class="total_dinero_sub"><h3>Total dinero: {{subcategoria.total_dinero | currency:divisa?? ''}}</h3></div>
-                        <div class="editar_sub"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarSubcategoria(subcategoria.id)" >Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                        <div class="total_transacciones_sub"><h3>Cantidad: {{subcategoria.total_transacciones}}</h3></div>
+                        <div class="total_dinero_sub"><h3>Dinero: {{subcategoria.total_dinero | currency:divisa?? ''}}</h3></div>
+                        <div class="editar_sub"><button mat-button color="primary" (click)="openDialogEditarSubcategoria(subcategoria.id)" >Editar <mat-icon>edit_attributes</mat-icon></button></div>
                     </div>
                 </div>
 
@@ -45,19 +45,19 @@
             <div *ngFor="let categoria of categorias_gasto">
                 <div class="categorias">
                     <div class="nombre_categoria"><h2>{{categoria.nombre}}</h2></div>
-                    <div class="total_transacciones"><h2># Transacciones: {{categoria.total_transacciones}}</h2></div>
-                    <div class="total_dinero"><h2>Total dinero: {{categoria.total_dinero | currency:divisa?? ''}}</h2></div>
-                    <div class="nueva_subcategoria"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogCrearSubcategoria(categoria.id, categoria.tipo)">+</button></div>
-                    <div class="editar"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarCategoria(categoria.id)" >Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                    <div class="total_transacciones"><h2>Cantidad: {{categoria.total_transacciones}}</h2></div>
+                    <div class="total_dinero"><h2>Dinero: {{categoria.total_dinero | currency:divisa?? ''}}</h2></div>
+                    <div class="nueva_subcategoria"><button mat-button color="primary" (click)="openDialogCrearSubcategoria(categoria.id, categoria.tipo)">+</button></div>
+                    <div class="editar"><button mat-button color="primary"  (click)="openDialogEditarCategoria(categoria.id)" >Editar <mat-icon>edit_attributes</mat-icon></button></div>
                 </div>
 
 
                 <div *ngFor="let subcategoria of subcategorias" class="subcategorias">
                     <div *ngIf="categoria.id==subcategoria.clave_categoria_id">
                         <div class="nombre_subcategoria"><h3>{{subcategoria.nombre}}</h3></div>
-                        <div class="total_transacciones_sub"><h3># Transacciones: {{subcategoria.total_transacciones}}</h3></div>
-                        <div class="total_dinero_sub"><h3>Total dinero: {{subcategoria.total_dinero | currency:divisa?? ''}}</h3></div>
-                        <div class="editar_sub"><button mat-button color="primary" style="border: 2px solid blue; float:left; width:100%" (click)="openDialogEditarSubcategoria(subcategoria.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
+                        <div class="total_transacciones_sub"><h3>Cantidad: {{subcategoria.total_transacciones}}</h3></div>
+                        <div class="total_dinero_sub"><h3>Dinero: {{subcategoria.total_dinero | currency:divisa?? ''}}</h3></div>
+                        <div class="editar_sub"><button mat-button color="primary" (click)="openDialogEditarSubcategoria(subcategoria.id)">Editar <mat-icon>edit_attributes</mat-icon></button></div>
                     </div>
                 </div>
             </div>

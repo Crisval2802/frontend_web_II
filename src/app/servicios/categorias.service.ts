@@ -1,8 +1,8 @@
 import { HttpClient, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseI } from '../modelos/response';
-import { Envio_CategoriaI } from '../modelos/envio_categoria';
+import { ResponseI } from '../interfaces/response';
+import { Envio_CategoriaI } from '../interfaces/envio_categoria';
 
 @Injectable({
   providedIn: 'root'

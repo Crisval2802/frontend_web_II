@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { ResponseI } from '../modelos/response';
+import { ResponseI } from '../interfaces/response';
 import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
-import { EnvioTransferenciaI } from '../modelos/envio_transferencia';
-import { ResponseTransferI } from '../modelos/response_transfer';
+import { EnvioTransferenciaI } from '../interfaces/envio_transferencia';
+import { ResponseTransferI } from '../interfaces/response_transfer';
 
 @Injectable({
   providedIn: 'root'

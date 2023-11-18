@@ -4,12 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {Dialog_TransaccionI} from '../../../../modelos/Dialog_Transaccion'
+import {Dialog_TransaccionI} from '../../../../interfaces/Dialog_Transaccion'
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { CuentaI } from 'src/app/modelos/cuentas';
-import { CategoriaI } from 'src/app/modelos/categorias';
-import { SubcategoriaI } from 'src/app/modelos/subcategorias';
-import { EnvioTransaccionI } from 'src/app/modelos/envio_transaccion';
+import { CuentaI } from 'src/app/interfaces/cuentas';
+import { CategoriaI } from 'src/app/interfaces/categorias';
+import { SubcategoriaI } from 'src/app/interfaces/subcategorias';
+import { EnvioTransaccionI } from 'src/app/interfaces/envio_transaccion';
 import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { finalize } from 'rxjs';
 import { TransferenciasService } from 'src/app/servicios/transferencias.service';

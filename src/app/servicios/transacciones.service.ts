@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { LoginI } from '../modelos/login';
-import { ResponseI } from '../modelos/response';
+import { LoginI } from '../interfaces/login';
+import { ResponseI } from '../interfaces/response';
 import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { TransaccionI } from '../modelos/transaccion';
-import { ResponseTranI } from '../modelos/response_tran';
-import { EnvioTransaccionI } from '../modelos/envio_transaccion';
-import { ResponseTranSemanaI } from '../modelos/response_tran_semana';
+import { TransaccionI } from '../interfaces/transaccion';
+import { ResponseTranI } from '../interfaces/response_tran';
+import { EnvioTransaccionI } from '../interfaces/envio_transaccion';
+import { ResponseTranSemanaI } from '../interfaces/response_tran_semana';
 
 @Injectable({
   providedIn: 'root'
@@ -92,7 +92,7 @@ export class TransaccionesService implements HttpInterceptor{
 
   //Post transaccion
   postTransaccion(form: EnvioTransaccionI):Observable<ResponseI>{
-    let direccion = this.url + "crear/transaccion/";
+    let direccion = this.url + "transacciones/";
     return this.http.post<ResponseI>(direccion, form);
   }
 

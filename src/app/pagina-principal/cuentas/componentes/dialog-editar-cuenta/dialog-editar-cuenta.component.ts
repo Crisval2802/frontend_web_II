@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs';
-import { Envio_CuentaI } from 'src/app/modelos/envio_cuenta';
+import { Envio_CuentaI } from 'src/app/interfaces/envio_cuenta';
 import { CuentaService } from 'src/app/servicios/cuenta.service';
 
 
