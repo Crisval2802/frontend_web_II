@@ -205,7 +205,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Ingresos del dia " + this.fecha +  ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -218,7 +218,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Ingresos de la semana del " + this.inicio_semana + " al " + this.fin_semana + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -232,7 +232,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Ingresos del mes de " + this.mes +  " del año " + this.year + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -245,7 +245,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Ingresos del Año " + this.year + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -258,7 +258,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
       console.log(blob);
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Ingresos del " + inicio + " al " + final + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -273,7 +273,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Gastos del dia " + this.fecha +  ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -286,7 +286,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Gastos de la semana del " + this.inicio_semana + " al " + this.fin_semana + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -299,7 +299,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob,"Reporte de Gastos del mes de " + this.mes +  " del año " + this.year + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -312,7 +312,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
 
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Gastos del Año " + this.year + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -325,7 +325,7 @@ export class HistorialComponent implements OnInit {
       const blob = new Blob([response], { type: 'application/pdf' });
       console.log(blob);
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        FileSaver.saveAs(blob, "Reporte de Gastos del " + inicio + " al " + final + ".pdf");
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }

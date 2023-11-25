@@ -13,7 +13,7 @@ import { Envio_Limite_ObjetivoI } from '../interfaces/envio_limite_objetivo';
 })
 export class LimitesService implements HttpInterceptor{
 
-  url:string="http://127.0.0.1:8000/api/";
+  url:string="https://crisval.pythonanywhere.com/api/";
   
 
 

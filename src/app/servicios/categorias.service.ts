@@ -9,7 +9,7 @@ import { Envio_CategoriaI } from '../interfaces/envio_categoria';
 })
 export class CategoriasService {
 
-  url:string="http://127.0.0.1:8000/api/";
+  url:string="https://crisval.pythonanywhere.com/api/";
   
 
 
