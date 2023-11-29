@@ -12,8 +12,7 @@ import { ResponseTransferI } from '../interfaces/response_transfer';
 })
 export class TransferenciasService implements HttpInterceptor{
 
-  url:string="http://127.0.0.1:8000/api/";
-  
+  url:string="https://crisval.pythonanywhere.com/api/";
 
 
   constructor(protected http: HttpClient) { }

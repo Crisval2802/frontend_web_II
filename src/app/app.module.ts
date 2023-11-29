@@ -12,7 +12,7 @@ import { PaginaPrincipalModule } from './pagina-principal/pagina-principal.modul
 import { ApiLoginService } from './servicios/api-login.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import {AndroidPermissions} from "@ionic-native/android-permissions/ngx"
 
 //Angular Material
 import {MatIconModule} from '@angular/material/icon';
@@ -27,6 +27,7 @@ import { RecuperarContraComponent } from './recuperar-contra/recuperar-contra.co
 import { CorreoEnviadoComponent } from './correo-enviado/correo-enviado.component';
 import { RegistroComponent } from './registro/registro.component';
 import { BarraSuperiorLoginComponent } from './barra-superior-login/barra-superior-login.component';
+
 
 
 @NgModule({

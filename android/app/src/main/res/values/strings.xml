@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Administrador de Ingresos y Gastos</string>
+    <string name="title_activity_main">Administrador de Ingresos y Gastos</string>
+    <string name="package_name">com.crisval.web</string>
+    <string name="custom_url_scheme">com.crisval.web</string>
+</resources>

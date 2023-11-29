@@ -7,6 +7,11 @@ import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import * as FileSaver from 'file-saver';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {Filesystem, Directory} from '@capacitor/filesystem';
+
+
+
+
 
 @Component({
   selector: 'app-historial',
@@ -21,6 +26,7 @@ export class HistorialComponent implements OnInit {
 
   
 
+  fileName:string="";
   id= localStorage.getItem('id');
 
   //filtro de categorias
@@ -202,10 +208,23 @@ export class HistorialComponent implements OnInit {
   //reportes de ingresos
   obtenerReporteIngresosDia(id: string | null,  categoria: string|null){
     this.transacciones_service.getReporteIngresosDia(id, categoria).subscribe((response:Blob)=>{
+      let ref = this;
       const blob = new Blob([response], { type: 'application/pdf' });
-
+      
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+        const Fecha = new Date();
+
+        this.fileName="Reporte de Ingresos del dia " + this.fecha +  ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -215,10 +234,23 @@ export class HistorialComponent implements OnInit {
 
   obtenerReporteIngresosSemana(id: string | null,  categoria: string|null){
     this.transacciones_service.getReporteIngresosSemana(id, categoria).subscribe((response:Blob)=>{
+      let ref = this;
       const blob = new Blob([response], { type: 'application/pdf' });
-
+      
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+        const Fecha = new Date();
+
+        this.fileName="Reporte de Ingresos de la semana del " + this.inicio_semana + " al " + this.fin_semana + ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -230,9 +262,21 @@ export class HistorialComponent implements OnInit {
   obtenerReporteIngresosMes(id: string | null,  categoria: string|null){
     this.transacciones_service.getReporteIngresosMes(id, categoria).subscribe((response:Blob)=>{
       const blob = new Blob([response], { type: 'application/pdf' });
-
+      let ref = this;
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+       
+
+        this.fileName="Reporte de Ingresos del mes de " + this.mes +  " del año " + this.year + ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -242,10 +286,24 @@ export class HistorialComponent implements OnInit {
 
   obtenerReporteIngresosYear(id: string | null,  categoria: string|null){
     this.transacciones_service.getReporteIngresosYear(id, categoria).subscribe((response:Blob)=>{
+      let ref = this;
       const blob = new Blob([response], { type: 'application/pdf' });
-
+      
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+
+
+        this.fileName="Reporte de Ingresos del Año " + this.year + ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
+
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -256,9 +314,17 @@ export class HistorialComponent implements OnInit {
   obtenerReporteIngresosRango(id: string | null,  categoria: string|null, inicio: string|undefined, final: string|undefined){
     this.transacciones_service.getReporteIngresosRango(id, categoria, inicio, final).subscribe((response:Blob)=>{
       const blob = new Blob([response], { type: 'application/pdf' });
-      console.log(blob);
+
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        this.fileName="Reporte de Ingresos del " + inicio + " al " + final + ".pdf";
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+        let ref = this;
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? ''); 
+        }
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -270,10 +336,23 @@ export class HistorialComponent implements OnInit {
   //reportes de gastos
   obtenerReporteGastosDia(id: string | null,  categoria: string|null){
     this.transacciones_service.getReporteGastosDia(id, categoria).subscribe((response:Blob)=>{
+      let ref = this;
       const blob = new Blob([response], { type: 'application/pdf' });
-
+      
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+        const Fecha = new Date();
+
+        this.fileName="Reporte de Gastos del dia " + this.fecha +  ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -283,10 +362,24 @@ export class HistorialComponent implements OnInit {
 
   obtenerReporteGastosSemana(id: string | null,  categoria: string|null){
     this.transacciones_service.getReporteGastosSemana(id, categoria).subscribe((response:Blob)=>{
+      let ref = this;
       const blob = new Blob([response], { type: 'application/pdf' });
-
+      
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+        const Fecha = new Date();
+
+        this.fileName="Reporte de Gastos de la semana del " + this.inicio_semana + " al " + this.fin_semana + ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
+
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -297,9 +390,22 @@ export class HistorialComponent implements OnInit {
   obtenerReporteGastosMes(id: string | null,  categoria: string|null){
     this.transacciones_service.getReporteGastosMes(id, categoria).subscribe((response:Blob)=>{
       const blob = new Blob([response], { type: 'application/pdf' });
-
+      let ref = this;
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+       
+
+        this.fileName="Reporte de Gastos del mes de " + this.mes +  " del año " + this.year + ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
+
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -308,11 +414,26 @@ export class HistorialComponent implements OnInit {
   }
 
   obtenerReporteGastosYear(id: string | null,  categoria: string|null){
-    this.transacciones_service.getReporteGastosYear(id, categoria).subscribe((response:Blob)=>{
-      const blob = new Blob([response], { type: 'application/pdf' });
 
+    this.transacciones_service.getReporteGastosYear(id, categoria).subscribe((response:Blob)=>{
+      let ref = this;
+      const blob = new Blob([response], { type: 'application/pdf' });
+      
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+
+
+
+        this.fileName="Reporte de Gastos del Año " + this.year + ".pdf"
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? '');
+
+        }
+
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -323,9 +444,17 @@ export class HistorialComponent implements OnInit {
   obtenerReporteGastosRango(id: string | null,  categoria: string|null, inicio: string|undefined, final: string|undefined){
     this.transacciones_service.getReporteGastosRango(id, categoria, inicio, final).subscribe((response:Blob)=>{
       const blob = new Blob([response], { type: 'application/pdf' });
-      console.log(blob);
+
       if (blob.size!==70){
-        FileSaver.saveAs(blob, 'Reporte de transacciones.pdf');
+        this.fileName="Reporte de Gastos del " + inicio + " al " + final + ".pdf";
+        var reader = new FileReader();
+        reader.readAsDataURL(response);
+        let ref = this;
+        reader.onloadend = function(){
+          let base64 = reader.result?.toString();
+          
+          ref.savePdf(base64 ?? ''); 
+        }
       }else{
         this._snackBar.open("Error, No se puede generar un reporte vacio", "Cerrar" ,{duration: 5000})
       }
@@ -334,5 +463,17 @@ export class HistorialComponent implements OnInit {
   }
 
 
-  
+  savePdf(base64: string | Blob){
+    Filesystem.writeFile({
+      path: this.fileName,
+      data: base64,
+      directory: Directory.Documents,
+    }).then((res)=>{
+      alert("Archivo guardado en " + res.uri);
+    }, (err)=>{
+      alert(err)
+    })
+  }
+
+
 }
