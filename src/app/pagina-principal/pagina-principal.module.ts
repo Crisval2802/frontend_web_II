@@ -6,7 +6,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angula
 import { ApiLoginService } from '../servicios/api-login.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BarraSuperiorComponent } from './barra-superior/barra-superior.component';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 //Angular Material
@@ -42,6 +42,8 @@ import { LimitesComponent } from './limites/limites.component';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
 import { DialogCrearLimiteComponent } from './limites/componentes/dialog-crear-limite/dialog-crear-limite.component';
 import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-crear-objetivo/dialog-crear-objetivo.component';
+import { DialogEliminarLimiteComponent } from './limites/componentes/dialog-eliminar-limite/dialog-eliminar-limite.component';
+import { DialogEliminarObjetivoComponent } from './objetivos/componentes/dialog-eliminar-objetivo/dialog-eliminar-objetivo.component';
 
 
 
@@ -66,7 +68,9 @@ import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-cre
     LimitesComponent,
     ObjetivosComponent,
     DialogCrearLimiteComponent,
-    DialogCrearObjetivoComponent
+    DialogCrearObjetivoComponent,
+    DialogEliminarLimiteComponent,
+    DialogEliminarObjetivoComponent
   ],
   imports: [
     CommonModule,
@@ -88,7 +92,8 @@ import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-cre
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressBarModule
 
   ],
   providers: [{

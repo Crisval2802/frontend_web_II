@@ -22,16 +22,21 @@
     <br>
     <br>
     <br>
+    <br>
     <hr>
 
     <div *ngFor="let item of objetivos" class="limites">
-        <div class="categoria"><h2>{{item.nombre_categoria}}</h2></div>
 
-        <div *ngIf="item.total>item.asignado" class="total_gastado" style="color:green"><h2>{{item.total | currency:item.divisa}}</h2></div>
-        <div *ngIf="item.total<=item.asignado" class="total_gastado" style="color: red"><h2>{{item.total | currency:item.divisa}}</h2></div>
-        <div class="limite_asignado"><h2>{{item.asignado  | currency:item.divisa }}</h2></div>
-        <div class="fecha_limite"><h2>{{item.fecha_limite}}</h2></div>
+            <div class="categoria"><h2>{{item.nombre_categoria}}</h2></div>
+
+            <div *ngIf="item.total>item.asignado" class="total_gastado" style="color:green"><h2>{{item.total | currency:item.divisa}}</h2></div>
+            <div *ngIf="item.total<=item.asignado" class="total_gastado" style="color: red"><h2>{{item.total | currency:item.divisa}}</h2></div>
+            <div class="limite_asignado"><h2>{{item.asignado  | currency:item.divisa }}</h2></div>
+            <div class="fecha_limite"><h2>{{item.fecha_limite}}</h2></div>
         
+            <button style="background-color: #6F0507;border-radius: 10px; margin-left: 1%;" (click)="openDialogEliminar(item.id)"><mat-icon class="material-icons color_white">delete</mat-icon></button>
+            <mat-progress-bar mode="determinate" style="float:left; overflow: hidden;" class="barra" [value]="(item.total / item.asignado) * 100"></mat-progress-bar>
+
        
     </div>
 

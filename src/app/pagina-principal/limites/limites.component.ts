@@ -5,6 +5,7 @@ import { LimitesService } from 'src/app/servicios/limites.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCrearLimiteComponent } from './componentes/dialog-crear-limite/dialog-crear-limite.component';
+import { DialogEliminarLimiteComponent } from './componentes/dialog-eliminar-limite/dialog-eliminar-limite.component';
 
 @Component({
   selector: 'app-limites',
@@ -45,6 +46,23 @@ export class LimitesComponent implements OnInit{
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogCrearLimiteComponent, {
       data: {},
+     
+    });
+
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.obtenerLimites(localStorage.getItem('id'));
+    });
+  }
+
+
+  openDialogEliminar(id: number | null): void {
+    const dialogRef = this.dialog.open(DialogEliminarLimiteComponent, {
+      data:{
+        id:id,
+      }
      
     });
 

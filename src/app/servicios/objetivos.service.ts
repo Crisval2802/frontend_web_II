@@ -43,4 +43,10 @@ export class ObjetivosService {
     let direccion = this.url + "objetivos/";
     return this.http.post<ResponseI>(direccion, form);
   }
+
+  deleteObjetivo(id: string | null):Observable<ResponseI>{
+    let direccion = this.url + "objetivos/" + id;
+
+    return this.http.delete<ResponseI>(direccion);
+  }
 }

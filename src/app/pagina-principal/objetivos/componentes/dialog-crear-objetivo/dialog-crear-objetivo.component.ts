@@ -83,7 +83,7 @@ export class DialogCrearObjetivoComponent implements OnInit{
       form.clave_usuario=localStorage.getItem("id");
       this.objetivo_service.postObjetivo(form).pipe(finalize(()=> this.dialogRef.close())).subscribe(data =>{
         console.log(data);
-        this._snackBar.open("Limite agregado exitosamente", "Cerrar" ,{duration: 5000});
+        this._snackBar.open("Objetivo agregado exitosamente", "Cerrar" ,{duration: 5000});
       });
 
      
