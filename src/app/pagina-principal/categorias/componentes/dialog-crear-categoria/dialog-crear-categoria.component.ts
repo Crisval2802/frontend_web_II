@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs';
 import { Envio_CategoriaI } from 'src/app/interfaces/envio_categoria';
-import { DialogEditarCuentaComponent } from 'src/app/pagina-principal/cuentas/componentes/dialog-editar-cuenta/dialog-editar-cuenta.component';
 import { CategoriasService } from 'src/app/servicios/categorias.service';
 
 

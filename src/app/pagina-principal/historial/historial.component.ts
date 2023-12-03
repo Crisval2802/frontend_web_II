@@ -5,7 +5,6 @@ import { CategoriaI } from 'src/app/interfaces/categorias';
 import { TransaccionI } from 'src/app/interfaces/transaccion';
 import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import * as FileSaver from 'file-saver';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {Filesystem, Directory} from '@capacitor/filesystem';
 

@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { Envio_CategoriaI } from 'src/app/interfaces/envio_categoria';
-import { DialogEditarCategoriaComponent } from '../dialog-editar-categoria/dialog-editar-categoria.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';

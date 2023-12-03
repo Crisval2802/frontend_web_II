@@ -1,11 +1,11 @@
-import { DatePipe, formatDate } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatTab, MatTabGroup } from '@angular/material/tabs';
+
 import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { TransaccionI } from 'src/app/interfaces/transaccion';
 import { MatTableDataSource } from '@angular/material/table';
-import { ResponseI } from 'src/app/interfaces/response';
+
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoTransaccionComponent } from './componentes/dialogo-transaccion/dialogo-transaccion.component';

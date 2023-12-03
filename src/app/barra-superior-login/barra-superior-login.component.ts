@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatToolbar } from '@angular/material/toolbar';
+
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-barra-superior-login',

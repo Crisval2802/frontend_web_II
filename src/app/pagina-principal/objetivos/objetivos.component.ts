@@ -4,6 +4,7 @@ import { DialogCrearObjetivoComponent } from './componentes/dialog-crear-objetiv
 import { MatDialog } from '@angular/material/dialog';
 import { ObjetivosService } from 'src/app/servicios/objetivos.service';
 import { Limites_ObjetivosI } from 'src/app/interfaces/Limites_Objetivos';
+import { DialogEliminarObjetivoComponent } from './componentes/dialog-eliminar-objetivo/dialog-eliminar-objetivo.component';
 
 @Component({
   selector: 'app-objetivos',
@@ -42,6 +43,24 @@ export class ObjetivosComponent implements OnInit{
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogCrearObjetivoComponent, {
       data: {},
+     
+    });
+
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.obtenerObjetivos(localStorage.getItem('id'));
+    });
+  }
+
+
+    
+  openDialogEliminar(id: number | null): void {
+    const dialogRef = this.dialog.open(DialogEliminarObjetivoComponent, {
+      data:{
+        id:id,
+      }
      
     });
 

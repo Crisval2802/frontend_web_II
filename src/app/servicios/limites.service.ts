@@ -46,4 +46,10 @@ export class LimitesService implements HttpInterceptor{
     let direccion = this.url + "limites/";
     return this.http.post<ResponseI>(direccion, form);
   }
+
+  deleteLimite(id: string | null):Observable<ResponseI>{
+    let direccion = this.url + "limites/" + id;
+
+    return this.http.delete<ResponseI>(direccion);
+  }
 }

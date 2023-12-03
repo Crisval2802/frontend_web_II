@@ -22,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule}  from '@angular/material/snack-bar';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -42,7 +42,8 @@ import { LimitesComponent } from './limites/limites.component';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
 import { DialogCrearLimiteComponent } from './limites/componentes/dialog-crear-limite/dialog-crear-limite.component';
 import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-crear-objetivo/dialog-crear-objetivo.component';
-
+import { DialogEliminarLimiteComponent } from './limites/componentes/dialog-eliminar-limite/dialog-eliminar-limite.component';
+import { DialogEliminarObjetivoComponent } from './objetivos/componentes/dialog-eliminar-objetivo/dialog-eliminar-objetivo.component';
 
 
 
@@ -66,7 +67,10 @@ import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-cre
     LimitesComponent,
     ObjetivosComponent,
     DialogCrearLimiteComponent,
-    DialogCrearObjetivoComponent
+    DialogCrearObjetivoComponent,
+    DialogEliminarLimiteComponent,
+    DialogEliminarObjetivoComponent
+  
   ],
   imports: [
     CommonModule,
@@ -88,7 +92,8 @@ import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-cre
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressBarModule
 
   ],
   providers: [{
