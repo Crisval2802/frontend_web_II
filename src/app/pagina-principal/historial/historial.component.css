@@ -1,52 +1,52 @@
 body{
-    padding: 1%;
+  padding: 1%;
 }
 .parte_superior{
-    overflow: hidden;
+  overflow: hidden;
 }
 
 select {
-    font-family: "Roboto", sans-serif;
-  
-    background: #ffffff;
+  font-family: "Roboto", sans-serif;
 
-    border: 2px solid black;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 18px;
-    
+  background: #ffffff;
+
+  border: 2px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 18px;
+  
+}
+
+
+input {
+  font-family: "Roboto", sans-serif;
+
+  background: #ffffff;
+
+  border: 2px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 18px;
+  margin-left: 5px;
+  margin-right: 5px;
+  
+} 
+
+label{
+  font-size: 18px;
+}
+
+
+@media screen and (max-width: 600px) {
+  h1{
+      font-size: 16px;
   }
 
-
-  input {
-    font-family: "Roboto", sans-serif;
-  
-    background: #ffffff;
-
-    border: 2px solid black;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 18px;
-    margin-left: 5px;
-    margin-right: 5px;
-    
-  } 
-
-  label{
-    font-size: 18px;
+  button{
+      margin-bottom: 10px;
   }
 
-
-  @media screen and (max-width: 600px) {
-    h1{
-        font-size: 16px;
-    }
-
-    button{
-        margin-bottom: 10px;
-    }
-
-    .fecha_final{
-        
-    }
+  .fecha_final{
+      
+  }
 }

@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CategoriaI } from 'src/app/interfaces/categorias';
 import { TransaccionI } from 'src/app/interfaces/transaccion';
@@ -7,7 +7,9 @@ import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {Filesystem, Directory} from '@capacitor/filesystem';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DialogVerImagenComponent } from './dialog-ver-imagen/dialog-ver-imagen.component';
+import { Chart, ChartType } from 'chart.js/auto';
 
 
 
@@ -21,7 +23,8 @@ export class HistorialComponent implements OnInit {
 
   constructor(private transacciones_service: TransaccionesService,
               private usuario_service: UsuarioService,
-              private _snackBar: MatSnackBar){}
+              private _snackBar: MatSnackBar,
+              public dialog: MatDialog){}
 
   
 
@@ -56,7 +59,7 @@ export class HistorialComponent implements OnInit {
 
   //Tabla
   //displayedColumns: string[] = ['cuenta','categoria', 'subcategoria', 'cantidad', 'comentarios'];
-  displayedColumns: string[] = ['cuenta','categoria', 'subcategoria', 'cantidad', 'comentarios', 'fecha'];
+  displayedColumns: string[] = ['cuenta','categoria', 'subcategoria', 'cantidad', 'comentarios', 'fecha', 'foto'];
   dataSourceIngresosDia =  new  MatTableDataSource<TransaccionI>
   dataSourceIngresosSemana =  new  MatTableDataSource<TransaccionI>
   dataSourceIngresosMes =  new  MatTableDataSource<TransaccionI>
@@ -78,16 +81,61 @@ export class HistorialComponent implements OnInit {
   year = (new Date()).getFullYear();
 
 
+  //Cosas para graficas
+  @ViewChild('graficoGastosDia', { static: true }) graficoGastosDia: ElementRef | undefined;
+  totalPorFechaGastosDia: { [cuenta: string]: number } = {};
+  public chartGastosDia: any;
+
+  @ViewChild('graficoGastosMes', { static: true }) graficoGastosMes: ElementRef | undefined;
+  totalPorFechaGastosMes: { [cuenta: string]: number } = {};
+  public chartGastosMes: any;
+
+  @ViewChild('graficoGastosSemana', { static: true }) graficoGastosSemana: ElementRef | undefined;
+  totalPorFechaGastosSemana: { [cuenta: string]: number } = {};
+  public chartGastosSemana: any;
+
+  @ViewChild('graficoGastosYear', { static: true }) graficoGastosYear: ElementRef | undefined;
+  totalPorFechaGastosYear: { [cuenta: string]: number } = {};
+  public chartGastosYear: any;
+
+  @ViewChild('graficoGastosRango', { static: true }) graficoGastosRango: ElementRef | undefined;
+  totalPorFechaGastosRango: { [cuenta: string]: number } = {};
+  public chartGastosRango: any;
+
+  
+  @ViewChild('graficoIngresosDia', { static: true }) graficoIngresosDia: ElementRef | undefined;
+  totalPorFechaIngresosDia: { [cuenta: string]: number } = {};
+  public chartIngresosDia: any;
+
+  @ViewChild('graficoIngresosMes', { static: true }) graficoIngresosMes: ElementRef | undefined;
+  totalPorFechaIngresosMes: { [cuenta: string]: number } = {};
+  public chartIngresosMes: any;
+
+  @ViewChild('graficoIngresosSemana', { static: true }) graficoIngresosSemana: ElementRef | undefined;
+  totalPorFechaIngresosSemana: { [cuenta: string]: number } = {};
+  public chartIngresosSemana: any;
+
+  @ViewChild('graficoIngresosYear', { static: true }) graficoIngresosYear: ElementRef | undefined;
+  totalPorFechaIngresosYear: { [cuenta: string]: number } = {};
+  public chartIngresosYear: any;
+
+
+  @ViewChild('graficoIngresosRango', { static: true }) graficoIngresosRango: ElementRef | undefined;
+  totalPorFechaIngresosRango: { [cuenta: string]: number } = {};
+  public chartIngresosRango: any;
+
   ngOnInit(): void {
     this.obtenerIngresosDia(localStorage.getItem('id'),"0");
     this.obtenerIngresosSemana(localStorage.getItem('id'),"0");
     this.obtenerIngresosMes(localStorage.getItem('id'),"0");
     this.obtenerIngresosYear(localStorage.getItem('id'),"0");
+    this.obtenerIngresosRango(localStorage.getItem('id'),"0", this.fecha, this.fecha);
+
     this.obtenerGastosDia(localStorage.getItem('id'),"0");
     this.obtenerGastosSemana(localStorage.getItem('id'),"0");
     this.obtenerGastosMes(localStorage.getItem('id'),"0");
     this.obtenerGastosYear(localStorage.getItem('id'),"0");
-
+    this.obtenerGastosRango(localStorage.getItem('id'),"0", this.fecha, this.fecha);
 
     this.obtenerCategoriasIngreso(localStorage.getItem('id'));
     this.obtenerCategoriasGasto(localStorage.getItem('id'));
@@ -126,6 +174,43 @@ export class HistorialComponent implements OnInit {
   obtenerIngresosDia(id: string | null,  categoria: string|null){
     this.transacciones_service.getIngresosDia(id, categoria).subscribe(data =>{
       this.dataSourceIngresosDia.data= data.Transacciones;
+
+       //Construccion del grafico
+       this.dataSourceIngresosDia.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaIngresosDia[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaIngresosDia[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaIngresosDia[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaIngresosDia);
+      var cantidades=Object.values(this.totalPorFechaIngresosDia);
+
+
+
+      if (this.chartIngresosDia) {
+        this.chartIngresosDia.destroy();
+      }
+
+      const ctx = this.graficoIngresosDia?.nativeElement.getContext('2d');
+      this.chartIngresosDia = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaIngresosDia = {};
     });
   }
 
@@ -134,24 +219,172 @@ export class HistorialComponent implements OnInit {
       this.dataSourceIngresosSemana.data= data.Transacciones;
       this.inicio_semana=data.Inicio;
       this.fin_semana=data.Final;
+
+       //Construccion del grafico
+       this.dataSourceIngresosSemana.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaIngresosSemana[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaIngresosSemana[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaIngresosSemana[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaIngresosSemana);
+      var cantidades=Object.values(this.totalPorFechaIngresosSemana);
+
+
+
+      if (this.chartIngresosSemana) {
+        this.chartIngresosSemana.destroy();
+      }
+
+      const ctx = this.graficoIngresosSemana?.nativeElement.getContext('2d');
+      this.chartIngresosSemana = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaIngresosSemana = {};
     });
   }
 
   obtenerIngresosMes(id: string | null,  categoria: string|null){
     this.transacciones_service.getIngresosMes(id, categoria).subscribe(data =>{
       this.dataSourceIngresosMes.data= data.Transacciones;
+
+       //Construccion del grafico
+       this.dataSourceIngresosMes.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaIngresosMes[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaIngresosMes[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaIngresosMes[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaIngresosMes);
+      var cantidades=Object.values(this.totalPorFechaIngresosMes);
+
+
+
+      if (this.chartIngresosMes) {
+        this.chartIngresosMes.destroy();
+      }
+
+      const ctx = this.graficoIngresosMes?.nativeElement.getContext('2d');
+      this.chartIngresosMes = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaIngresosMes = {};
     });
   }
 
   obtenerIngresosYear(id: string | null,  categoria: string|null){
     this.transacciones_service.getIngresosYear(id, categoria).subscribe(data =>{
       this.dataSourceIngresosYear.data= data.Transacciones;
+
+       //Construccion del grafico
+       this.dataSourceIngresosYear.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaIngresosYear[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaIngresosYear[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaIngresosYear[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaIngresosYear);
+      var cantidades=Object.values(this.totalPorFechaIngresosYear);
+
+
+
+      if (this.chartIngresosYear) {
+        this.chartIngresosYear.destroy();
+      }
+
+      const ctx = this.graficoIngresosYear?.nativeElement.getContext('2d');
+      this.chartIngresosYear = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaIngresosYear = {};
     });
   }
 
   obtenerIngresosRango(id: string | null,  categoria: string|null, inicio: string|undefined, final: string|undefined){
     this.transacciones_service.getIngresosRango(id, categoria, inicio, final).subscribe(data =>{
       this.dataSourceIngresosRango.data= data.Transacciones;
+
+       //Construccion del grafico
+       this.dataSourceIngresosRango.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaIngresosRango[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaIngresosRango[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaIngresosRango[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaIngresosRango);
+      var cantidades=Object.values(this.totalPorFechaIngresosRango);
+
+
+
+      if (this.chartIngresosRango) {
+        this.chartIngresosRango.destroy();
+      }
+
+      const ctx = this.graficoIngresosRango?.nativeElement.getContext('2d');
+      this.chartIngresosRango = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaIngresosRango = {};
     });
   }
 
@@ -160,6 +393,43 @@ export class HistorialComponent implements OnInit {
   obtenerGastosDia(id: string | null,  categoria: string|null){
     this.transacciones_service.getGastosDia(id,categoria).subscribe(data =>{
       this.dataSourceGastosDia.data= data.Transacciones;
+
+      //Construccion del grafico
+      this.dataSourceGastosDia.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaGastosDia[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaGastosDia[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaGastosDia[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaGastosDia);
+      var cantidades=Object.values(this.totalPorFechaGastosDia);
+
+
+
+      if (this.chartGastosDia) {
+        this.chartGastosDia.destroy();
+      }
+
+      const ctx = this.graficoGastosDia?.nativeElement.getContext('2d');
+      this.chartGastosDia = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaGastosDia = {};
     });
   }
 
@@ -168,24 +438,176 @@ export class HistorialComponent implements OnInit {
       this.dataSourceGastosSemana.data= data.Transacciones;
       this.inicio_semana=data.Inicio;
       this.fin_semana=data.Final;
+
+
+
+      //Construccion del grafico
+      this.dataSourceGastosSemana.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaGastosSemana[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaGastosSemana[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaGastosSemana[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaGastosSemana);
+      var cantidades=Object.values(this.totalPorFechaGastosSemana);
+
+
+
+      if (this.chartGastosSemana) {
+        this.chartGastosSemana.destroy();
+      }
+
+      const ctx = this.graficoGastosSemana?.nativeElement.getContext('2d');
+      this.chartGastosSemana = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaGastosSemana = {};
+
     });
   }
 
   obtenerGastosMes(id: string | null,  categoria: string|null){
     this.transacciones_service.getGastosMes(id, categoria).subscribe(data =>{
       this.dataSourceGastosMes.data= data.Transacciones;
+
+
+      //Construccion del grafico
+      this.dataSourceGastosMes.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaGastosMes[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaGastosMes[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaGastosMes[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaGastosMes);
+      var cantidades=Object.values(this.totalPorFechaGastosMes);
+
+
+
+      if (this.chartGastosMes) {
+        this.chartGastosMes.destroy();
+      }
+
+      const ctx = this.graficoGastosMes?.nativeElement.getContext('2d');
+      this.chartGastosMes = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaGastosMes = {};
     });
   }
 
   obtenerGastosYear(id: string | null,  categoria: string|null){
     this.transacciones_service.getGastosYear(id, categoria).subscribe(data =>{
       this.dataSourceGastosYear.data= data.Transacciones;
+
+
+      //Construccion del grafico
+      this.dataSourceGastosYear.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaGastosYear[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaGastosYear[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaGastosYear[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaGastosYear);
+      var cantidades=Object.values(this.totalPorFechaGastosYear);
+      const ctx = this.graficoGastosYear?.nativeElement.getContext('2d');
+
+      if (this.chartGastosYear) {
+        this.chartGastosYear.destroy();
+      }
+
+
+      this.chartGastosYear = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaGastosYear = {};
+
     });
   }
 
   obtenerGastosRango(id: string | null,  categoria: string|null, inicio: string|undefined, final: string|undefined){
     this.transacciones_service.getGastosRango(id, categoria, inicio, final).subscribe(data =>{
       this.dataSourceGastosRango.data= data.Transacciones;
+
+      //Construccion del grafico
+      this.dataSourceGastosRango.data.forEach(item =>{
+        const cuenta = item.nombre_cuenta;
+        if (!this.totalPorFechaGastosRango[cuenta]){
+        // Si no hay una entrada, inicializarla con la cantidad de la transacción
+        this.totalPorFechaGastosRango[cuenta] = item.cantidad;
+        } else {
+          // Si ya hay una entrada, sumar la cantidad de la transacción a la existente
+          this.totalPorFechaGastosRango[cuenta] += item.cantidad;
+        }
+      })
+      var cuentas=Object.keys(this.totalPorFechaGastosRango);
+      var cantidades=Object.values(this.totalPorFechaGastosRango);
+      const ctx = this.graficoGastosRango?.nativeElement.getContext('2d');
+     
+      if (this.chartGastosRango) {
+        this.chartGastosRango.destroy();
+      }
+
+      this.chartGastosRango = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cuentas,
+          datasets: [{
+            label: 'Total por cuentas',
+            data: cantidades,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      this.totalPorFechaGastosRango= {};
+
     });
   }
 
@@ -473,6 +895,21 @@ export class HistorialComponent implements OnInit {
       alert(err)
     })
   }
+
+  openDialogImagen(url: string): void {
+    const dialogRef = this.dialog.open(DialogVerImagenComponent, {
+      data: {url:'https://crisval.pythonanywhere.com//media/' + url},
+     
+    });
+
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
+
 
 
 }

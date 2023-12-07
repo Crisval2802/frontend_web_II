@@ -42,7 +42,14 @@
 
                     </div>
 
-                    
+                    <div style="width: 100%; margin-top:100px">
+                      <h2 style=" float: left">Representacion Grafica  </h2>
+                      <canvas #graficoIngresosDia></canvas>
+                    </div>
+  
+                  
+                    <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+
                     <table mat-table [dataSource]="dataSourceIngresosDia.data" matSort class="mat-elevation-z8">
 
                         <!--- Note that these columns can be defined in any order.
@@ -87,6 +94,12 @@
                             <th mat-header-cell *matHeaderCellDef> Fecha </th>
                             <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                           </ng-container>
+
+                          <!-- Foto Column -->
+                          <ng-container matColumnDef="foto">
+                            <th mat-header-cell *matHeaderCellDef> Foto </th>
+                            <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                          </ng-container>
                       
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -124,7 +137,14 @@
 
                     </div>
 
+                    <div style="width: 100%; margin-top:100px">
+                      <h2 style=" float: left">Representacion Grafica  </h2>
+                      <canvas #graficoIngresosSemana></canvas>
+                    </div>
+  
                   
+                    <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+
                     <table mat-table [dataSource]="dataSourceIngresosSemana.data" matSort class="mat-elevation-z8">
 
                       <!--- Note that these columns can be defined in any order.
@@ -169,6 +189,12 @@
                         <th mat-header-cell *matHeaderCellDef> Fecha </th>
                         <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                       </ng-container>
+
+                      <!-- Foto Column -->
+                      <ng-container matColumnDef="foto">
+                        <th mat-header-cell *matHeaderCellDef> Foto </th>
+                        <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                      </ng-container>
                     
                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -208,7 +234,14 @@
 
                   </div>
 
+                  <div style="width: 100%; margin-top:100px">
+                    <h2 style=" float: left">Representacion Grafica  </h2>
+                    <canvas #graficoIngresosMes></canvas>
+                  </div>
+
                 
+                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+
                   <table mat-table [dataSource]="dataSourceIngresosMes.data" matSort class="mat-elevation-z8">
 
                     <!--- Note that these columns can be defined in any order.
@@ -253,6 +286,12 @@
                       <th mat-header-cell *matHeaderCellDef> Fecha </th>
                       <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                     </ng-container>
+
+                    <!-- Foto Column -->
+                    <ng-container matColumnDef="foto">
+                      <th mat-header-cell *matHeaderCellDef> Foto </th>
+                      <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                    </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -289,6 +328,13 @@
 
                   </div>
 
+                  <div style="width: 100%; margin-top:100px">
+                    <h2 style=" float: left">Representacion Grafica  </h2>
+                    <canvas #graficoIngresosYear></canvas>
+                  </div>
+
+                
+                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
                 
                   <table mat-table [dataSource]="dataSourceIngresosYear.data" matSort class="mat-elevation-z8">
 
@@ -334,6 +380,12 @@
                       <th mat-header-cell *matHeaderCellDef> Fecha </th>
                       <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                     </ng-container>
+
+                    <!-- Foto Column -->
+                    <ng-container matColumnDef="foto">
+                      <th mat-header-cell *matHeaderCellDef> Foto </th>
+                      <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                    </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -376,9 +428,18 @@
                     <br>
                     <label class="fecha_final">Fecha final</label>
                     <input type="date" [(ngModel)]="fecha_final_ingresos_rango" value={{fecha}} required/>
-                    <button mat-button color="primary" style=" border: 2px solid blue; margin-left:10px;" (click)="obtenerIngresosRango(id, categoria_elegida_ingreso_year, fecha_inicio_ingresos_rango, fecha_final_ingresos_rango)">Filtrar <mat-icon>filter_list</mat-icon></button>
+                    <button mat-button color="primary" style=" border: 2px solid blue; margin-left:10px;" (click)="obtenerIngresosRango(id, categoria_elegida_ingreso_rango, fecha_inicio_ingresos_rango, fecha_final_ingresos_rango)">Filtrar <mat-icon>filter_list</mat-icon></button>
                   </div>
                   
+
+                  <div margin-top:100px>
+                    <h2 style=" float: left">Representacion Grafica  </h2>
+                    <canvas #graficoIngresosRango></canvas>
+                  </div>
+
+                
+                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+
                   <table mat-table [dataSource]="dataSourceIngresosRango.data" matSort class="mat-elevation-z8">
 
                     <!--- Note that these columns can be defined in any order.
@@ -423,6 +484,12 @@
                       <th mat-header-cell *matHeaderCellDef> Fecha </th>
                       <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                     </ng-container>
+
+                    <!-- Foto Column -->
+                    <ng-container matColumnDef="foto">
+                      <th mat-header-cell *matHeaderCellDef> Foto </th>
+                      <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                    </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -462,6 +529,13 @@
 
                     <button mat-button color="primary" style="margin-top: 1%; border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerGastosDia(id, categoria_elegida_gasto_dia)">Filtrar <mat-icon>filter_list</mat-icon></button>
 
+                    <div style="width: 100%; margin-top:100px">
+                      <h2 style=" float: left">Representacion Grafica  </h2>
+                      <canvas #graficoGastosDia></canvas>
+                    </div>
+  
+                  
+                    <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
 
                     <table mat-table [dataSource]="dataSourceGastosDia.data" matSort class="mat-elevation-z8">
 
@@ -508,6 +582,12 @@
                           <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                         </ng-container>
 
+                        <!-- Foto Column -->
+                        <ng-container matColumnDef="foto">
+                          <th mat-header-cell *matHeaderCellDef> Foto </th>
+                          <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                        </ng-container>
+
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                       </table>
@@ -544,7 +624,14 @@
                     <button mat-button color="primary" style=" border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerGastosSemana(id, categoria_elegida_gasto_semana)">Filtrar <mat-icon>filter_list</mat-icon></button>
 
                   </div>
+                  
+                  <div style="width: 100%; margin-top:100px">
+                    <h2 style=" float: left">Representacion Grafica  </h2>
+                    <canvas #graficoGastosSemana></canvas>
+                  </div>
 
+                
+                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
                 
                   <table mat-table [dataSource]="dataSourceGastosSemana.data" matSort class="mat-elevation-z8">
 
@@ -590,6 +677,12 @@
                       <th mat-header-cell *matHeaderCellDef> Fecha </th>
                       <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                     </ng-container>
+
+                    <!-- Foto Column -->
+                    <ng-container matColumnDef="foto">
+                      <th mat-header-cell *matHeaderCellDef> Foto </th>
+                      <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                    </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -627,6 +720,13 @@
 
                   </div>
 
+                  <div style="width: 100%; margin-top:100px">
+                    <h2 style=" float: left">Representacion Grafica  </h2>
+                    <canvas #graficoGastosMes></canvas>
+                  </div>
+
+                
+                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
                 
                   <table mat-table [dataSource]="dataSourceGastosMes.data" matSort class="mat-elevation-z8">
 
@@ -672,6 +772,12 @@
                       <th mat-header-cell *matHeaderCellDef> Fecha </th>
                       <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                     </ng-container>
+
+                    <!-- Foto Column -->
+                    <ng-container matColumnDef="foto">
+                      <th mat-header-cell *matHeaderCellDef> Foto </th>
+                      <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                    </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -683,9 +789,11 @@
                     <h2 style="float:left">Gastos del {{year}}</h2>
                     <button mat-button color="primary" style="border: 2px solid blue; float:right" (click)="obtenerReporteGastosYear(id, categoria_elegida_gasto_year)">Generar reporte</button>
                   </div>
-
+                  
                   <div style="margin-top: 10px;">
                     <h2 style=" float: left">Categoria:  </h2>
+
+
 
 
                     <div style=" float: left; margin-left: 10px">
@@ -708,7 +816,14 @@
 
                   </div>
 
+                  
+                  <div style="width: 100%; margin-top:100px">
+                    <h2 style=" float: left">Representacion Grafica  </h2>
+                    <canvas #graficoGastosYear></canvas>
+                  </div>
+
                 
+                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
                   <table mat-table [dataSource]="dataSourceGastosYear.data" matSort class="mat-elevation-z8">
 
                     <!--- Note that these columns can be defined in any order.
@@ -753,10 +868,20 @@
                       <th mat-header-cell *matHeaderCellDef> Fecha </th>
                       <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
                     </ng-container>
+
+                    <!-- Foto Column -->
+                    <ng-container matColumnDef="foto">
+                      <th mat-header-cell *matHeaderCellDef> Foto </th>
+                      <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
+                    </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                   </table>
+
+
+
+              
                 </mat-tab>
 
                 <mat-tab label="Rango">
@@ -795,9 +920,19 @@
                     <br>
                     <label class="fecha_final">Fecha final</label>
                     <input type="date" [(ngModel)]="fecha_final_gastos_rango" value={{fecha}} required/>
-                    <button mat-button color="primary" style=" border: 2px solid blue; margin-left:10px;" (click)="obtenerGastosRango(id, categoria_elegida_gasto_year, fecha_inicio_gastos_rango, fecha_final_gastos_rango)">Filtrar <mat-icon>filter_list</mat-icon></button>
+                    <button mat-button color="primary" style=" border: 2px solid blue; margin-left:10px;" (click)="obtenerGastosRango(id, categoria_elegida_gasto_rango, fecha_inicio_gastos_rango, fecha_final_gastos_rango)">Filtrar <mat-icon>filter_list</mat-icon></button>
                   </div>
-                  
+
+                  <div margin-top:100px>
+                    <h2 style=" float: left">Representacion Grafica  </h2>
+                    <canvas #graficoGastosRango></canvas>
+                  </div>
+
+                
+                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+
+
+
                   <table mat-table [dataSource]="dataSourceGastosRango.data" matSort class="mat-elevation-z8">
 
                     <!--- Note that these columns can be defined in any order.
@@ -841,6 +976,12 @@
                     <ng-container matColumnDef="fecha">
                       <th mat-header-cell *matHeaderCellDef> Fecha </th>
                       <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    </ng-container>
+
+                    <!-- Foto Column -->
+                    <ng-container matColumnDef="foto">
+                      <th mat-header-cell *matHeaderCellDef> Foto </th>
+                      <td mat-cell *matCellDef="let element"> <button (click)="openDialogImagen(element.foto)" *ngIf="element.foto!='' && element.foto!=null">Ver imagen</button> </td>
                     </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,4 +1,4 @@
-export interface EnvioTransaccionI {
+export interface EnvioTransaccionCuotasI {
     tipo: string;
     categoria_gasto: number;
     categoria_ingreso: number;
@@ -9,4 +9,5 @@ export interface EnvioTransaccionI {
     comentarios: string;
     divisa: string;
     imagen: File;
+    cantidad_pagos:number;
 }

@@ -44,6 +44,9 @@ import { DialogCrearLimiteComponent } from './limites/componentes/dialog-crear-l
 import { DialogCrearObjetivoComponent } from './objetivos/componentes/dialog-crear-objetivo/dialog-crear-objetivo.component';
 import { DialogEliminarLimiteComponent } from './limites/componentes/dialog-eliminar-limite/dialog-eliminar-limite.component';
 import { DialogEliminarObjetivoComponent } from './objetivos/componentes/dialog-eliminar-objetivo/dialog-eliminar-objetivo.component';
+import { PagosCuotasComponent } from './pagos-cuotas/pagos-cuotas.component';
+import { DialogNuevoPagoComponent } from './pagos-cuotas/componentes/dialog-nuevo-pago/dialog-nuevo-pago.component';
+import { DialogVerImagenComponent } from './inicio/componentes/dialog-ver-imagen/dialog-ver-imagen.component';
 
 
 
@@ -69,7 +72,10 @@ import { DialogEliminarObjetivoComponent } from './objetivos/componentes/dialog-
     DialogCrearLimiteComponent,
     DialogCrearObjetivoComponent,
     DialogEliminarLimiteComponent,
-    DialogEliminarObjetivoComponent
+    DialogEliminarObjetivoComponent,
+    DialogVerImagenComponent,
+    PagosCuotasComponent,
+    DialogNuevoPagoComponent,
   
   ],
   imports: [

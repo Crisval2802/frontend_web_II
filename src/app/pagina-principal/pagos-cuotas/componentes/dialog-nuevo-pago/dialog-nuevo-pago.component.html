@@ -1,18 +1,14 @@
-<h1 mat-dialog-title>Crear transaccion</h1>
+<h1 mat-dialog-title>Crear pago</h1>
 <mat-dialog-content>
   <p>Agrega los datos de la transaccion</p>
   
     <form [formGroup]="transaccionForm">
 
-        <label>Tipo</label>
-          <select class="example-full-width" name="select" [(ngModel)]="selectedNav" formControlName="tipo">
-            <option value="Ingreso">Ingreso</option>
-            <option value="Gasto" selected>Gasto</option>
-          </select>
+
 
 
         <!-- Categorias de gasto -->
-        <div *ngIf="selectedNav === 'Gasto'">
+        <div >
           <label>Categoria</label>
 
             <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_gasto" formControlName="categoria_gasto">
@@ -23,23 +19,10 @@
             </select>
         </div> 
 
-        <!-- Categorias de ingreso -->
-        <div *ngIf="selectedNav === 'Ingreso'">
-          <label>Categoria</label>
-
-          <select class="example-full-width" name="select" [(ngModel)]="categoria_elegida_ingreso" formControlName="categoria_ingreso">
-            <option disabled value="null">Elige una categoria</option>
-              <option *ngFor="let item of categorias_ingreso" [value]="item.id">
-                {{ item.nombre }}
-              </option>
-          </select>
-        </div>
-
-
         <h1 *ngIf="categoria_error!=false"> Elija una categoria </h1>
 
       <!-- SubCategorias de gasto -->
-      <div *ngIf="selectedNav === 'Gasto'">
+      <div>
         <label>SubCategoria</label>
           <select class="example-full-width" name="select" formControlName="subcategoria_gasto">
             <option disabled value="null">Elige una subcategoria</option>
@@ -48,25 +31,6 @@
             <ng-container *ngFor="let item of subcategorias" >
 
               <option *ngIf="item.clave_categoria_id==categoria_elegida_gasto"  [value]="item.id">
-                {{ item.nombre }}
-              </option>
-
-
-            </ng-container>
-              
-          </select>
-      </div>
-
-      <!-- SubCategorias de ingreso -->
-      <div *ngIf="selectedNav === 'Ingreso'" >
-      <label>SubCategoria Ingreso</label>
-          <select class="example-full-width" name="select" formControlName="subcategoria_ingreso">
-            <option disabled value="null">Elige una subcategoria</option>
-            <option value=''>--Dejar Subcategoria Vacia--</option>
-
-            <ng-container *ngFor="let item of subcategorias" >
-
-              <option *ngIf="item.clave_categoria_id==categoria_elegida_ingreso"  [value]="item.id">
                 {{ item.nombre }}
               </option>
 
@@ -90,10 +54,20 @@
 
         <label>Cantidad</label>
         <input type='number' matInput
-               formControlName="description" formControlName="cantidad" required/>
+               formControlName="cantidad" required/>
 
         <h1 *ngIf="cantidad_error!=false"> Ingrese un numero en la casilla cantidad </h1>
 
+
+        <label>Cantidad de pagos</label>
+        <select class="example-full-width" name="select" formControlName="cantidad_pagos">
+
+            <option *ngFor="let i of range(2, 24)" [value]="i">
+               {{ i}}
+            </option>
+          </select>
+
+        <h1 *ngIf="cantidad_pagos_error!=false" > Ingrese un numero entre 2 y 24 </h1>
 
         <label>Comentarios</label>
         <textarea formControlName="correo" formControlName="comentarios"></textarea>

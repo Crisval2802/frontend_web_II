@@ -25,6 +25,7 @@
     "@capacitor/filesystem": "^5.1.4",
     "@capacitor/storage": "^1.2.5",
     "@ionic-native/android-permissions": "^5.36.0",
+    "chart.js": "^4.4.1",
     "file-saver": "^2.0.5",
     "jetifier": "^2.0.0",
     "ngx-cookie": "^6.0.1",

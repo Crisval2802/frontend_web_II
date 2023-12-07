@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {NgIf} from '@angular/common';
 @Component({
   selector: 'app-barra-superior',
   templateUrl: './barra-superior.component.html',
@@ -26,6 +26,10 @@ export class BarraSuperiorComponent {
 
   irCuentas(){
     this.router.navigate(['cuentas']);
+  }
+
+  irCuotas(){
+    this.router.navigate(['cuotas']);
   }
 
   irCategorias(){

@@ -1,28 +1,24 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import {Dialog_TransaccionI} from '../../../../interfaces/Dialog_Transaccion'
-import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { CuentaI } from 'src/app/interfaces/cuentas';
-import { CategoriaI } from 'src/app/interfaces/categorias';
-import { SubcategoriaI } from 'src/app/interfaces/subcategorias';
-import { EnvioTransaccionI } from 'src/app/interfaces/envio_transaccion';
-import { TransaccionesService } from 'src/app/servicios/transacciones.service';
-import { finalize } from 'rxjs';
-import { TransferenciasService } from 'src/app/servicios/transferencias.service';
+import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { finalize } from 'rxjs';
+import { Dialog_TransaccionI } from 'src/app/interfaces/Dialog_Transaccion';
+import { CategoriaI } from 'src/app/interfaces/categorias';
+import { CuentaI } from 'src/app/interfaces/cuentas';
+import { EnvioTransaccionI } from 'src/app/interfaces/envio_transaccion';
+import { EnvioTransaccionCuotasI } from 'src/app/interfaces/envio_transaccion_cuotas';
+import { SubcategoriaI } from 'src/app/interfaces/subcategorias';
+import { DialogoTransaccionComponent } from 'src/app/pagina-principal/inicio/componentes/dialogo-transaccion/dialogo-transaccion.component';
+import { TransaccionesService } from 'src/app/servicios/transacciones.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
-  selector: 'app-dialogo-transaccion',
-  templateUrl: './dialogo-transaccion.component.html',
-  styleUrls: ['./dialogo-transaccion.component.css'],
-
+  selector: 'app-dialog-nuevo-pago',
+  templateUrl: './dialog-nuevo-pago.component.html',
+  styleUrls: ['./dialog-nuevo-pago.component.css']
 })
-export class DialogoTransaccionComponent implements OnInit{
+export class DialogNuevoPagoComponent {
   selectedNav: string= "Gasto";
   categoria_elegida_gasto: number = 0;
   categoria_elegida_ingreso: number = 0;
@@ -34,6 +30,7 @@ export class DialogoTransaccionComponent implements OnInit{
 
 
   cantidad_error:boolean=false;
+  cantidad_pagos_error:boolean=false;
   cuenta_error:boolean=false;
   categoria_error:boolean=false;
 
@@ -49,11 +46,12 @@ export class DialogoTransaccionComponent implements OnInit{
     cantidad: new FormControl('', Validators.required),
     comentarios: new FormControl('', Validators.required),
     imagen: new FormControl(File, Validators.required),
+    cantidad_pagos: new FormControl(File, Validators.required)
   })
 
   constructor(
     private usuario_service: UsuarioService,
-    public dialogRef: MatDialogRef<DialogoTransaccionComponent>,
+    public dialogRef: MatDialogRef<DialogNuevoPagoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Dialog_TransaccionI,
     private transaccion_service: TransaccionesService,
     private _snackBar: MatSnackBar
@@ -70,7 +68,7 @@ export class DialogoTransaccionComponent implements OnInit{
     this.dialogRef.close();
   }
 
-  enviarTransaccion(form:EnvioTransaccionI | any): void{
+  enviarTransaccion(form:EnvioTransaccionCuotasI | any): void{
     
 
     //Validacion de los campos del dialogo
@@ -84,27 +82,28 @@ export class DialogoTransaccionComponent implements OnInit{
       this.cuenta_error=false;
     }
     //validacion de categoria
-    if (form.tipo=='Gasto'){
-      if (form.categoria_gasto==''){
-        this.categoria_error=true;
-        errores=true;
-      }else{
-        this.categoria_error=false;  
-      }
+
+    if (form.categoria_gasto==''){
+      this.categoria_error=true;
+      errores=true;
     }else{
-      if (form.categoria_ingreso==''){
-        this.categoria_error=true;
-        errores=true;
-      }else{
-        this.categoria_error=false;  
-      }
+      this.categoria_error=false;  
     }
+    
     //validacion de cantidad
     if (form.cantidad<=0){
       this.cantidad_error=true;
       errores=true;
     }else{
       this.cantidad_error=false;
+    }
+
+    //validacion de cantidad
+    if (form.cantidad_pagos<2 || form.cantidad_pagos>24){
+      this.cantidad_pagos_error=true;
+      errores=true;
+    }else{
+      this.cantidad_pagos_error=false;
     }
 
 
@@ -114,7 +113,7 @@ export class DialogoTransaccionComponent implements OnInit{
 
     const formData = new FormData();
 
-    formData.append('tipo', form.tipo);
+    formData.append('tipo', "Gasto");
     formData.append('categoria_gasto', form.categoria_gasto.toString());
     formData.append('categoria_ingreso', form.categoria_ingreso.toString());
     formData.append('subcategoria_gasto', form.subcategoria_gasto.toString());
@@ -123,6 +122,7 @@ export class DialogoTransaccionComponent implements OnInit{
     formData.append('cantidad', form.cantidad.toString());
     formData.append('comentarios', form.comentarios);
     formData.append('divisa', form.divisa);
+    formData.append('cantidad_pagos', form.cantidad_pagos)
 
     if (this.archivoSeleccionado){
       formData.append('imagen', this.archivoSeleccionado, this.archivoSeleccionado.name);
@@ -177,6 +177,11 @@ export class DialogoTransaccionComponent implements OnInit{
         this.subcategorias = data.Subcategorias;
 
     });
+  }
+
+   // Función para generar un rango de números
+   range(start: number, end: number): number[] {
+    return Array.from({ length: end - start + 1 }, (_, index) => index + start);
   }
 
 }
