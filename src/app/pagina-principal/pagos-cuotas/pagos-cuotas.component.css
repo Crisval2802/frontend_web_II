@@ -1,0 +1,125 @@
+body{
+    padding: 1%;
+}
+
+
+
+.parte_superior{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+
+.categorias{
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+
+.categorias div{
+    float:left;
+}
+
+.subcategorias{
+    overflow: hidden;
+
+}
+
+
+
+
+
+.nombre_categoria{
+    width: 30%;
+    color:rgb(75, 75, 208);
+    float:left;
+    overflow: hidden;
+}
+
+.total_transacciones{
+    margin-left: 1%;
+    width: 40%;
+    float:left;
+}
+
+.total_dinero{
+    margin-left: 1%;
+    width: 45%;
+    float:left;
+}
+
+
+
+
+
+
+
+.nombre_subcategoria{
+    margin-left: 8%;
+    width: 35%;
+    color:rgb(75, 75, 208);
+    float:left;
+}
+
+
+
+
+
+.total_transacciones_sub{
+    margin-left: 1%;
+    width: 40%;
+    float:left;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+    h2{
+        font-size: 12px;
+    }
+
+    h3{
+        font-size: 10px;
+    }
+
+    button{
+        font-size: 10px;
+    }
+
+    
+    .nombre_categoria{
+        width: 28%;
+        color:rgb(75, 75, 208);
+        float:left;
+        overflow: hidden;
+    }
+
+    .total_transacciones{
+        margin-left: 1%;
+        width: 70%;
+        float:left;
+    }
+
+    .total_dinero{
+        margin-left: 1%;
+        width: 100%;
+        float:left;
+    }
+
+
+
+
+    
+
+
+
+
+
+
+
+}

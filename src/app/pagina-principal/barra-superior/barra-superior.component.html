@@ -2,6 +2,7 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
       <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="irCuotas()">Pagos a cuotas</button>
         <button mat-menu-item (click)="irCuentas()">Cuentas</button>
         <button mat-menu-item (click)="irCategorias()">Categorias</button>
         <button mat-menu-item (click)="irHistorial()">Historial</button>
