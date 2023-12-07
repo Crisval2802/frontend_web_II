@@ -37,7 +37,7 @@ export class DialogoTransaccionComponent implements OnInit{
   cuenta_error:boolean=false;
   categoria_error:boolean=false;
 
-
+  archivoSeleccionado: File | null = null;
 
   transaccionForm = new FormGroup({
     tipo: new FormControl('', Validators.required),
@@ -47,7 +47,8 @@ export class DialogoTransaccionComponent implements OnInit{
     subcategoria_ingreso: new FormControl('', Validators.required),
     cuenta: new FormControl('', Validators.required),
     cantidad: new FormControl('', Validators.required),
-    comentarios: new FormControl('', Validators.required)
+    comentarios: new FormControl('', Validators.required),
+    imagen: new FormControl(File, Validators.required),
   })
 
   constructor(
@@ -106,12 +107,36 @@ export class DialogoTransaccionComponent implements OnInit{
       this.cantidad_error=false;
     }
 
+
+   
+    
+    form.divisa=localStorage.getItem('divisa');
+
+    const formData = new FormData();
+
+    formData.append('tipo', form.tipo);
+    formData.append('categoria_gasto', form.categoria_gasto.toString());
+    formData.append('categoria_ingreso', form.categoria_ingreso.toString());
+    formData.append('subcategoria_gasto', form.subcategoria_gasto.toString());
+    formData.append('subcategoria_ingreso', form.subcategoria_ingreso.toString());
+    formData.append('cuenta', form.cuenta.toString());
+    formData.append('cantidad', form.cantidad.toString());
+    formData.append('comentarios', form.comentarios);
+    formData.append('divisa', form.divisa);
+
+    if (this.archivoSeleccionado){
+      formData.append('imagen', this.archivoSeleccionado, this.archivoSeleccionado.name);
+    }
+
+
+
     //si existen errores no cierra el dialogo no envia la transaccion
     if (errores==true){
       return;
     }else{
       form.divisa=localStorage.getItem('divisa');
-      this.transaccion_service.postTransaccion(form).pipe(finalize(()=> this.dialogRef.close()))   .subscribe(data =>{
+      this.transaccion_service.postTransaccion(formData).pipe(finalize(()=> this.dialogRef.close()))   .subscribe(data =>{
+        console.log(data);
         this._snackBar.open("Transaccion agreagada exitosamente", "Cerrar" ,{duration: 5000});
       });
 
@@ -122,7 +147,9 @@ export class DialogoTransaccionComponent implements OnInit{
   }
 
 
-
+  onFileSelected(event: any) {
+    this.archivoSeleccionado = event.target.files[0];
+  }
 
   obtenerCuentas(id: string | null){
     this.usuario_service.getCuentas(id).subscribe(data =>{

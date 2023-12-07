@@ -11,4 +11,5 @@ export interface TransaccionI {
     nombre_cuenta: string;
     nombre_categoria: string;
     nombre_subcategoria: string;
+    foto:File;
 }

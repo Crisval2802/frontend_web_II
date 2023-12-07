@@ -98,7 +98,9 @@
         <label>Comentarios</label>
         <textarea formControlName="correo" formControlName="comentarios"></textarea>
 
-
+        <label>Imagen</label>
+        <input id="imagen" type="file" name="imagen" formControlName="imagen" (change)="onFileSelected($event)" />
+        
     </form>
 </mat-dialog-content>
 

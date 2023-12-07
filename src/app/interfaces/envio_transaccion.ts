@@ -8,4 +8,5 @@ export interface EnvioTransaccionI {
     cantidad: number;
     comentarios: string;
     divisa: string;
+    imagen: File;
 }

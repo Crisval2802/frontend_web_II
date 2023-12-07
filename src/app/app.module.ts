@@ -27,7 +27,7 @@ import { RecuperarContraComponent } from './recuperar-contra/recuperar-contra.co
 import { CorreoEnviadoComponent } from './correo-enviado/correo-enviado.component';
 import { RegistroComponent } from './registro/registro.component';
 import { BarraSuperiorLoginComponent } from './barra-superior-login/barra-superior-login.component';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import { BarraSuperiorLoginComponent } from './barra-superior-login/barra-superi
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

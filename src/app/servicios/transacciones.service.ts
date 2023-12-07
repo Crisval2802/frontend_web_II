@@ -90,9 +90,9 @@ export class TransaccionesService implements HttpInterceptor{
 
 
   //Post transaccion
-  postTransaccion(form: EnvioTransaccionI):Observable<ResponseI>{
+  postTransaccion(formData: FormData):Observable<ResponseI>{
     let direccion = this.url + "transacciones/";
-    return this.http.post<ResponseI>(direccion, form);
+    return this.http.post<ResponseI>(direccion, formData);
   }
 
   //Reportes de ingreso
