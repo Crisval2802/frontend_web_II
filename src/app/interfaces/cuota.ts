@@ -3,5 +3,6 @@ export interface CuotaI {
     clave_transaccion_id: number;
     cantidad: number;
     fecha: string;
+    pendiente:string;
 
 }

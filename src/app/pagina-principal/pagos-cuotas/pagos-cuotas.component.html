@@ -16,6 +16,7 @@
         <div class="categorias" style="overflow: hidden;">
             <div class="nombre_categoria"><h2>Fecha: {{pago.fecha}}</h2></div>
             <div class="total_transacciones"><h2>Cantidad: {{pago.cantidad | currency:pago.divisa}}</h2></div>
+            <div class="cuenta"><h2>Cuenta: {{pago.nombre_cuenta}}</h2></div>
             <div class="total_dinero"><h2>Comentarios: {{pago.comentarios}}</h2></div>
 
         </div>
@@ -26,7 +27,8 @@
                 <div class="nombre_subcategoria"><h3>Fecha: {{cuota.fecha}}</h3></div>
                 <div class="total_transacciones_sub"><h3>Cantidad: {{cuota.cantidad | currency:pago.divisa}}</h3></div>
 
-                
+                <div  *ngIf="cuota.pendiente=='SI'"> <button mat-button color="primary" style="border: 2px solid blue" (click)="pagarCuota(cuota.id)">Pagar</button></div>
+                <div *ngIf="cuota.pendiente!='SI'" > <mat-icon>check_circle</mat-icon></div>
             </div>
         </div>
 

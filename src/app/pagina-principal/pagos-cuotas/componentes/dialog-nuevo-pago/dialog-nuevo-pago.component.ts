@@ -30,6 +30,7 @@ export class DialogNuevoPagoComponent {
 
 
   cantidad_error:boolean=false;
+  cantidad_p_error:boolean=false;
   cantidad_pagos_error:boolean=false;
   cuenta_error:boolean=false;
   categoria_error:boolean=false;
@@ -46,7 +47,7 @@ export class DialogNuevoPagoComponent {
     cantidad: new FormControl('', Validators.required),
     comentarios: new FormControl('', Validators.required),
     imagen: new FormControl(File, Validators.required),
-    cantidad_pagos: new FormControl(File, Validators.required)
+    cantidad_p: new FormControl('', Validators.required),
   })
 
   constructor(
@@ -99,11 +100,11 @@ export class DialogNuevoPagoComponent {
     }
 
     //validacion de cantidad
-    if (form.cantidad_pagos<2 || form.cantidad_pagos>24){
-      this.cantidad_pagos_error=true;
+    if (form.cantidad_p<2 || form.cantidad_p>24){
+      this.cantidad_p_error=true;
       errores=true;
     }else{
-      this.cantidad_pagos_error=false;
+      this.cantidad_p_error=false;
     }
 
 
@@ -122,7 +123,7 @@ export class DialogNuevoPagoComponent {
     formData.append('cantidad', form.cantidad.toString());
     formData.append('comentarios', form.comentarios);
     formData.append('divisa', form.divisa);
-    formData.append('cantidad_pagos', form.cantidad_pagos)
+    formData.append('cantidad_pagos', form.cantidad_p)
 
     if (this.archivoSeleccionado){
       formData.append('imagen', this.archivoSeleccionado, this.archivoSeleccionado.name);
@@ -136,7 +137,7 @@ export class DialogNuevoPagoComponent {
     }else{
       form.divisa=localStorage.getItem('divisa');
       this.transaccion_service.postTransaccion(formData).pipe(finalize(()=> this.dialogRef.close()))   .subscribe(data =>{
-        console.log(data);
+
         this._snackBar.open("Transaccion agreagada exitosamente", "Cerrar" ,{duration: 5000});
       });
 

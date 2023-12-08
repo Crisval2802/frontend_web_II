@@ -58,16 +58,17 @@
 
         <h1 *ngIf="cantidad_error!=false"> Ingrese un numero en la casilla cantidad </h1>
 
+        
 
         <label>Cantidad de pagos</label>
-        <select class="example-full-width" name="select" formControlName="cantidad_pagos">
+        <select class="example-full-width" name="select" formControlName="cantidad_p">
 
             <option *ngFor="let i of range(2, 24)" [value]="i">
                {{ i}}
             </option>
           </select>
 
-        <h1 *ngIf="cantidad_pagos_error!=false" > Ingrese un numero entre 2 y 24 </h1>
+        <h1 *ngIf="cantidad_p_error!=false" > Ingrese un numero entre 2 y 24 </h1> 
 
         <label>Comentarios</label>
         <textarea formControlName="correo" formControlName="comentarios"></textarea>

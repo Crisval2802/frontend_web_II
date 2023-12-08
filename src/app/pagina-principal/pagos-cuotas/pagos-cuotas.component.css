@@ -30,7 +30,7 @@ body{
 
 
 .nombre_categoria{
-    width: 30%;
+    width: 20%;
     color:rgb(75, 75, 208);
     float:left;
     overflow: hidden;
@@ -42,9 +42,23 @@ body{
     float:left;
 }
 
+
+.nombre_categoria{
+    width: 30%;
+    color:rgb(75, 75, 208);
+    float:left;
+    overflow: hidden;
+}
+
 .total_dinero{
     margin-left: 1%;
     width: 45%;
+    float:left;
+}
+
+.pagar{
+    margin-left: 1%;
+    width: 10%;
     float:left;
 }
 
@@ -101,7 +115,7 @@ body{
 
     .total_transacciones{
         margin-left: 1%;
-        width: 70%;
+        width: 40%;
         float:left;
     }
 
