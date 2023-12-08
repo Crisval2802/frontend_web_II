@@ -8,6 +8,7 @@ import { ResponseTranI } from '../interfaces/response_tran';
 import { EnvioTransaccionI } from '../interfaces/envio_transaccion';
 import { ResponseTranSemanaI } from '../interfaces/response_tran_semana';
 import { ResponsePagosCuotasI } from '../interfaces/response_Pagos_Cuotas';
+import { EnvioCuotaI } from '../interfaces/envio_cuota';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ import { ResponsePagosCuotasI } from '../interfaces/response_Pagos_Cuotas';
 export class TransaccionesService implements HttpInterceptor{
 
   url:string="https://crisval.pythonanywhere.com/api/";
-  
+  //url:string="http://localhost:8000/api/";
 
 
   constructor(protected http: HttpClient) { }
@@ -167,6 +168,10 @@ export class TransaccionesService implements HttpInterceptor{
     return this.http.get<ResponsePagosCuotasI>(direccion);
   }
   
+  putPagarCuota(form: EnvioCuotaI):Observable<ResponseI>{
+    let direccion = this.url + "pagar_cuota/";
+    return this.http.put<ResponseI>(direccion, form);
+  }
 }
 
 

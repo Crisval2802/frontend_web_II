@@ -9,5 +9,5 @@ export interface EnvioTransaccionCuotasI {
     comentarios: string;
     divisa: string;
     imagen: File;
-    cantidad_pagos:number;
+    cantidad_p:number;
 }

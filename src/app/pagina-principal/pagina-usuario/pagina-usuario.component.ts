@@ -100,7 +100,8 @@ export class PaginaUsuarioComponent implements OnInit {
 
       this._snackBar.open("Divisa Actualizada exitosamente", "Cerrar" ,{duration: 5000});
 
-      console.log(data);
+
+      
     });
 
 
