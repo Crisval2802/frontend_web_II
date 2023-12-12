@@ -18,8 +18,8 @@ import { Cambiar_UsuarioI } from '../interfaces/cambiar_usuario';
 export class UsuarioService {
 
 
-  url:string="https://crisval.pythonanywhere.com/api/";
-  //url:string="http://localhost:8000/api/";
+  //url:string="https://crisval.pythonanywhere.com/api/";
+  url:string="http://localhost:8000/api/";
 
 
   constructor(protected http: HttpClient) { }

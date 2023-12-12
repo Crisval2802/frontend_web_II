@@ -119,7 +119,7 @@ export class InicioComponent implements OnInit{
 
   openDialogImagen(url: string): void {
     const dialogRef = this.dialog.open(DialogVerImagenComponent, {
-      data: {url:'https://crisval.pythonanywhere.com//media/' + url},
+      data: {url:'http://localhost:8000//media/' + url},
      
     });
 

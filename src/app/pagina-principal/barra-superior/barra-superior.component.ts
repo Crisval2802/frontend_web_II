@@ -32,6 +32,7 @@ export class BarraSuperiorComponent {
     this.router.navigate(['cuotas']);
   }
 
+
   irCategorias(){
     this.router.navigate(['categorias']);
   }

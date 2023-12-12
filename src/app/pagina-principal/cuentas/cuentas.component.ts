@@ -108,7 +108,7 @@ export class CuentasComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+      this.obtenerCuentas(localStorage.getItem('id'));
     });
   }
 }

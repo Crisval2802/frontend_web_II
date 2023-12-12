@@ -13,8 +13,8 @@ import { ResponseTransferI } from '../interfaces/response_transfer';
 export class TransferenciasService implements HttpInterceptor{
 
 
-  url:string="https://crisval.pythonanywhere.com/api/";
-  //url:string="http://localhost:8000/api/";
+  //url:string="https://crisval.pythonanywhere.com/api/";
+  url:string="http://localhost:8000/api/";
 
   constructor(protected http: HttpClient) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
