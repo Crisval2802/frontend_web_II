@@ -76,11 +76,16 @@ export class PagosCuotasComponent {
 
   pagarCuota(clave: string | any): void{
     
-      this.form.clave = clave;
+    this.form.clave = clave;
     
-      this.transaccion_service.putPagarCuota(this.form).pipe(finalize(()=> this.obtenerPagos(localStorage.getItem('id')))) .subscribe(data =>{
+    this.transaccion_service.putPagarCuota(this.form).pipe(finalize(()=> this.obtenerPagos(localStorage.getItem('id')))) .subscribe(data =>{
+      if (data.error=="error"){
+        this._snackBar.open(data.message, "Cerrar" ,{duration: 5000});
+      }else{
         this._snackBar.open("Cuota Pagada Exitosamente", "Cerrar" ,{duration: 5000});
-      });
+      }
+      
+    });
   
   }
 

@@ -89,7 +89,11 @@ export class DialogCrearTransferenciaComponent implements OnInit{
     }else{
       form.divisa=localStorage.getItem('divisa');
       this.transferencia_service.postTransferencia(form).pipe(finalize(()=> this.dialogRef.close()))   .subscribe(data =>{
-        this._snackBar.open("Transferencia realizada exitosamente", "Cerrar" ,{duration: 5000});
+        if (data.error=='error'){
+          this._snackBar.open(data.message, "Cerrar" ,{duration: 5000});
+        }else{
+          this._snackBar.open("Transferencia realizada exitosamente", "Cerrar" ,{duration: 5000});
+        }
       });
 
      

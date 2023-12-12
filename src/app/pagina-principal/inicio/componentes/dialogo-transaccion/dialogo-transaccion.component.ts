@@ -136,8 +136,13 @@ export class DialogoTransaccionComponent implements OnInit{
     }else{
       form.divisa=localStorage.getItem('divisa');
       this.transaccion_service.postTransaccion(formData).pipe(finalize(()=> this.dialogRef.close()))   .subscribe(data =>{
-        console.log(data);
-        this._snackBar.open("Transaccion agreagada exitosamente", "Cerrar" ,{duration: 5000});
+        
+        if (data.error=='error'){
+          this._snackBar.open(data.message, "Cerrar" ,{duration: 5000});
+        }else{
+          this._snackBar.open("Transaccion agregada exitosamente", "Cerrar" ,{duration: 5000});
+        }
+
       });
 
      

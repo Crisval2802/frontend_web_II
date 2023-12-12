@@ -5,4 +5,5 @@ export interface ResponseI {
     nombre: string;
     divisa: string;
     id: string;
+    error: string;
 }
