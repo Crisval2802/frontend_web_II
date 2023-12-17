@@ -42,13 +42,15 @@
 
                     </div>
 
-                    <div style="width: 100%; margin-top:100px">
+                    <div class="grafico" [hidden]="dataSourceIngresosDia.data.length<=0">
                       <h2 style=" float: left">Representacion Grafica  </h2>
                       <canvas #graficoIngresosDia></canvas>
                     </div>
   
                   
-                    <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                    <br>
+                    <br>
+                    <br>
 
                     <table mat-table [dataSource]="dataSourceIngresosDia.data" matSort class="mat-elevation-z8">
 
@@ -137,13 +139,15 @@
 
                     </div>
 
-                    <div style="width: 100%; margin-top:100px">
+                    <div class="grafico" [hidden]="dataSourceIngresosSemana.data.length<=0">
                       <h2 style=" float: left">Representacion Grafica  </h2>
                       <canvas #graficoIngresosSemana></canvas>
                     </div>
   
-                  
-                    <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                    <br>
+                    <br>
+                    <br>
+                    
 
                     <table mat-table [dataSource]="dataSourceIngresosSemana.data" matSort class="mat-elevation-z8">
 
@@ -234,13 +238,16 @@
 
                   </div>
 
-                  <div style="width: 100%; margin-top:100px">
+                  <div class="grafico" [hidden]="dataSourceIngresosMes.data.length<=0">
                     <h2 style=" float: left">Representacion Grafica  </h2>
                     <canvas #graficoIngresosMes></canvas>
                   </div>
 
+                  <br>
+                  <br>
+                  <br>
                 
-                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                  
 
                   <table mat-table [dataSource]="dataSourceIngresosMes.data" matSort class="mat-elevation-z8">
 
@@ -328,13 +335,15 @@
 
                   </div>
 
-                  <div style="width: 100%; margin-top:100px">
+                  <div class="grafico" [hidden]="dataSourceIngresosYear.data.length<=0">
                     <h2 style=" float: left">Representacion Grafica  </h2>
                     <canvas #graficoIngresosYear></canvas>
                   </div>
 
-                
-                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                  <br>
+                  <br>
+                  <br>
+                  
                 
                   <table mat-table [dataSource]="dataSourceIngresosYear.data" matSort class="mat-elevation-z8">
 
@@ -432,13 +441,15 @@
                   </div>
                   
 
-                  <div margin-top:100px>
+                  <div class="grafico" [hidden]="dataSourceIngresosRango.data.length<=0">
                     <h2 style=" float: left">Representacion Grafica  </h2>
                     <canvas #graficoIngresosRango></canvas>
                   </div>
 
-                
-                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                  <br>
+                  <br>
+                  <br>
+                  
 
                   <table mat-table [dataSource]="dataSourceIngresosRango.data" matSort class="mat-elevation-z8">
 
@@ -529,13 +540,15 @@
 
                     <button mat-button color="primary" style="margin-top: 1%; border: 2px solid blue; float:left; margin-left:10px;" (click)="obtenerGastosDia(id, categoria_elegida_gasto_dia)">Filtrar <mat-icon>filter_list</mat-icon></button>
 
-                    <div style="width: 100%; margin-top:100px">
+                    <div class="grafico" [hidden]="dataSourceGastosDia.data.length<=0">
                       <h2 style=" float: left">Representacion Grafica  </h2>
                       <canvas #graficoGastosDia></canvas>
                     </div>
   
-                  
-                    <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                    <br>
+                    <br>
+                    <br>
+                    
 
                     <table mat-table [dataSource]="dataSourceGastosDia.data" matSort class="mat-elevation-z8">
 
@@ -625,13 +638,15 @@
 
                   </div>
                   
-                  <div style="width: 100%; margin-top:100px">
+                  <div class="grafico" [hidden]="dataSourceGastosSemana.data.length<=0">
                     <h2 style=" float: left">Representacion Grafica  </h2>
                     <canvas #graficoGastosSemana></canvas>
                   </div>
 
                 
-                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                  <br>
+                  <br>
+                  <br>
                 
                   <table mat-table [dataSource]="dataSourceGastosSemana.data" matSort class="mat-elevation-z8">
 
@@ -720,13 +735,15 @@
 
                   </div>
 
-                  <div style="width: 100%; margin-top:100px">
+                  <div class="grafico" [hidden]="dataSourceGastosMes.data.length<=0">
                     <h2 style=" float: left">Representacion Grafica  </h2>
                     <canvas #graficoGastosMes></canvas>
                   </div>
 
                 
-                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                  <br>
+                  <br>
+                  <br>
                 
                   <table mat-table [dataSource]="dataSourceGastosMes.data" matSort class="mat-elevation-z8">
 
@@ -817,13 +834,15 @@
                   </div>
 
                   
-                  <div style="width: 100%; margin-top:100px">
+                  <div class="grafico"  [hidden]="dataSourceGastosYear.data.length<=0">
                     <h2 style=" float: left">Representacion Grafica  </h2>
                     <canvas #graficoGastosYear></canvas>
                   </div>
 
-                
-                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
+                  <br>
+                  <br>
+                  <br>
+                  
                   <table mat-table [dataSource]="dataSourceGastosYear.data" matSort class="mat-elevation-z8">
 
                     <!--- Note that these columns can be defined in any order.
@@ -923,14 +942,14 @@
                     <button mat-button color="primary" style=" border: 2px solid blue; margin-left:10px;" (click)="obtenerGastosRango(id, categoria_elegida_gasto_rango, fecha_inicio_gastos_rango, fecha_final_gastos_rango)">Filtrar <mat-icon>filter_list</mat-icon></button>
                   </div>
 
-                  <div margin-top:100px>
+                  <div  class="grafico" [hidden]="dataSourceGastosRango.data.length<=0">
                     <h2 style=" float: left">Representacion Grafica  </h2>
-                    <canvas #graficoGastosRango></canvas>
+                    <canvas   #graficoGastosRango></canvas>
                   </div>
 
-                
-                  <h2 style=" float: left; margin-top: 20px;">Tabla  </h2>
-
+                  <br>
+                  <br>
+                  <br>
 
 
                   <table mat-table [dataSource]="dataSourceGastosRango.data" matSort class="mat-elevation-z8">

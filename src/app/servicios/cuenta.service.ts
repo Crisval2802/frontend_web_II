@@ -12,8 +12,8 @@ import { Put_CuentaI } from '../interfaces/put_cuenta';
 })
 export class CuentaService implements HttpInterceptor{
 
-  //url:string="https://crisval.pythonanywhere.com/api/";
-  url:string="http://localhost:8000/api/";
+ url:string="https://crisval.pythonanywhere.com/api/";
+ //url:string="http://localhost:8000/api/";
 
 
   constructor(protected http: HttpClient) { }

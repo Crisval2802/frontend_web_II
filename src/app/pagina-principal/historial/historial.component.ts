@@ -193,14 +193,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoIngresosDia?.nativeElement.getContext('2d');
       this.chartIngresosDia = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -238,14 +237,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoIngresosSemana?.nativeElement.getContext('2d');
       this.chartIngresosSemana = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -281,14 +279,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoIngresosMes?.nativeElement.getContext('2d');
       this.chartIngresosMes = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -324,14 +321,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoIngresosYear?.nativeElement.getContext('2d');
       this.chartIngresosYear = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -367,14 +363,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoIngresosRango?.nativeElement.getContext('2d');
       this.chartIngresosRango = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -412,14 +407,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoGastosDia?.nativeElement.getContext('2d');
       this.chartGastosDia = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -459,14 +453,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoGastosSemana?.nativeElement.getContext('2d');
       this.chartGastosSemana = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -504,14 +497,13 @@ export class HistorialComponent implements OnInit {
 
       const ctx = this.graficoGastosMes?.nativeElement.getContext('2d');
       this.chartGastosMes = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -547,14 +539,13 @@ export class HistorialComponent implements OnInit {
 
 
       this.chartGastosYear = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
@@ -584,23 +575,26 @@ export class HistorialComponent implements OnInit {
       var cantidades=Object.values(this.totalPorFechaGastosRango);
       const ctx = this.graficoGastosRango?.nativeElement.getContext('2d');
      
+      
+
       if (this.chartGastosRango) {
         this.chartGastosRango.destroy();
       }
 
       this.chartGastosRango = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: cuentas,
           datasets: [{
             label: 'Total por cuentas',
             data: cantidades,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+
             borderWidth: 1
           }]
         }
       });
+
+      
 
       this.totalPorFechaGastosRango= {};
 
@@ -761,7 +755,7 @@ export class HistorialComponent implements OnInit {
 
   openDialogImagen(url: string): void {
     const dialogRef = this.dialog.open(DialogVerImagenComponent, {
-      data: {url:'http://localhost:8000//media/' + url},
+      data: {url:'https://crisval.pythonanywhere.com//media/' + url},
      
     });
 
